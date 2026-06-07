@@ -1031,11 +1031,10 @@ document.addEventListener('click', function(){
   document.getElementById('langDropMob').classList.remove('open');
 });
 
-// Auto-detect language — actual DOM update happens in DOMContentLoaded
-(function(){
-  var bl = (navigator.language || 'cs').toLowerCase().slice(0,2);
-  lang = (bl === 'cs' || bl === 'sk') ? 'cz' : 'en';
-})();
+// ═══════════════════════════════════════════════════
+// FORCE CZECH AS DEFAULT (remove browser auto-detect)
+// ═══════════════════════════════════════════════════
+lang = 'cz';
 
 // ═══════════════════════════════════════════════════
 // NAV + MOBILE
@@ -1127,7 +1126,6 @@ document.addEventListener('DOMContentLoaded', function(){
   setTimeout(function(){
     addM('assistant', t('chatGreeting'));
   }, 600);
-  // applyLang already called by auto-detect IIFE — no duplicate needed
 });
 
 function tChat() {
@@ -1149,8 +1147,7 @@ function addM(role, text) {
   var time = new Date().toLocaleTimeString('cs-CZ', {hour:'2-digit', minute:'2-digit'});
   var div = document.createElement('div');
   div.className = 'cm ' + role;
-  // Safe HTML escape without regex
-  var safe = text.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
+  var safe = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
   div.innerHTML = '<div class="cm-a">' + (role === 'user' ? 'U' : 'N') + '</div>'
     + '<div><div class="cm-b">' + safe + '</div><div class="cm-t">' + time + '</div></div>';
   c.appendChild(div);

@@ -1,4 +1,3 @@
-// api/chat.js
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -7,12 +6,14 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  // Use the exact name of your environment variable
-  const API_KEY = process.env.ANTHROPIC_API_KEY_Clinic;
+  // Try multiple possible environment variable names
+  const API_KEY = process.env.ANTHROPIC_API_KEY_Clinic 
+                || process.env.ANTHROPIC_API_KEY 
+                || process.env.ANTHROPIC_API_KEY_NAIL;
 
   if (!API_KEY) {
-    console.error('ANTHROPIC_API_KEY_Clinic not set');
-    return res.status(500).json({ error: 'ANTHROPIC_API_KEY_Clinic not set in environment' });
+    console.error('No Anthropic API key found');
+    return res.status(500).json({ error: 'No Anthropic API key found. Please set ANTHROPIC_API_KEY_Clinic or ANTHROPIC_API_KEY in Vercel environment variables.' });
   }
 
   const { messages, system } = req.body || {};
@@ -30,7 +31,7 @@ export default async function handler(req, res) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307', // valid model name
+        model: 'claude-3-haiku-20240307',
         max_tokens: 1024,
         system: system || '',
         messages: messages,

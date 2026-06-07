@@ -4,32 +4,22 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>95 Nail Lab — Nail Salon Praha</title>
-  <meta name="description" content="Luxusní nehtové studio v srdci Prahy. Gelové nehty, manikúra, nail art. Hodnocení 4.94 ★. Rezervujte online."/>
+  <meta name="description" content="Luxusni nehtove studio v srdci Prahy. Gelove nehty, manikura, nail art. Hodnoceni 4.94. Rezervujte online."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --cream:#fdf8f3;
-      --blush:#f5e6dd;
-      --rose:#c9847a;
-      --rose-d:#a8655b;
-      --rose-l:#e8b4a8;
-      --nude:#e8d5c4;
-      --bark:#3d2b1f;
-      --bark2:#6b4c3b;
-      --muted:#9b7b6b;
-      --white:#ffffff;
-      --line:rgba(61,43,31,0.1);
-      --gold:#c8a97a;
+      --cream:#fdf8f3; --blush:#f5e6dd; --rose:#c9847a; --rose-d:#a8655b;
+      --rose-l:#e8b4a8; --nude:#e8d5c4; --bark:#3d2b1f; --bark2:#6b4c3b;
+      --muted:#9b7b6b; --white:#ffffff; --line:rgba(61,43,31,0.1); --gold:#c8a97a;
     }
     html{scroll-behavior:smooth}
     body{background:var(--cream);color:var(--bark);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-    /* ── NOISE TEXTURE ── */
-    body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-
-    /* ── NAV ── */
+    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:1.4rem 5vw;display:flex;align-items:center;justify-content:space-between;transition:all .35s}
     nav.scrolled{background:rgba(253,248,243,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:1rem 5vw}
     .nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--bark);letter-spacing:.04em}
@@ -37,16 +27,32 @@
     .nav-links{display:flex;gap:2.4rem;list-style:none}
     .nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--bark2);text-decoration:none;transition:color .25s}
     .nav-links a:hover{color:var(--rose)}
+    .nav-right{display:flex;align-items:center;gap:.8rem}
     .nav-book{background:var(--rose);color:var(--white);padding:.6rem 1.4rem;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s}
     .nav-book:hover{background:var(--rose-d);transform:translateY(-1px);box-shadow:0 6px 20px rgba(168,101,91,.3)}
-    .nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-    .nav-ham span{width:22px;height:1.5px;background:var(--bark);transition:all .3s;display:block}
-    .mob-menu{display:none;position:fixed;inset:0;top:60px;background:var(--cream);z-index:400;padding:2rem 5vw;flex-direction:column;gap:.5rem}
+    .nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+    .nav-ham span{width:22px;height:1.5px;background:var(--bark);display:block}
+    .mob-menu{display:none;position:fixed;inset:0;top:60px;background:var(--cream);z-index:400;padding:2rem 5vw;flex-direction:column;gap:.5rem;overflow-y:auto}
     .mob-menu.open{display:flex}
     .mob-menu a{font-size:1rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--bark);text-decoration:none;padding:1rem 0;border-bottom:1px solid var(--line)}
     .mob-book{margin-top:1.5rem;background:var(--rose);color:white;padding:1rem;border-radius:100px;text-align:center;font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
 
-    /* ── HERO ── */
+    /* LANG DROPDOWN */
+    .lang-drop{position:relative}
+    .lang-curr{background:none;border:1px solid var(--line);color:var(--bark2);padding:5px 10px;font-size:11px;font-weight:600;letter-spacing:.08em;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px;border-radius:6px}
+    .lang-curr:hover{border-color:var(--rose);color:var(--rose)}
+    .lang-curr svg{opacity:.5;transition:transform .2s}
+    .lang-drop.open .lang-curr svg{transform:rotate(180deg)}
+    .lang-opts{display:none;position:absolute;top:calc(100% + 8px);right:0;background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:140px;box-shadow:0 12px 32px rgba(61,43,31,.15);z-index:9999}
+    .lang-drop.open .lang-opts{display:block}
+    .lang-opt{display:flex;align-items:center;gap:10px;width:100%;padding:9px 14px;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all .15s;text-align:left}
+    .lang-opt:hover{background:var(--blush);color:var(--rose)}
+    .lang-opt.active-opt{color:var(--rose);font-weight:600}
+    .mob-lang{margin-top:.5rem}
+    .mob-lang .lang-curr{width:100%;justify-content:space-between;padding:10px 14px;border-radius:8px;border-color:var(--line)}
+    .mob-lang .lang-opts{position:static;box-shadow:none;border-radius:8px;margin-top:4px}
+
+    /* HERO */
     .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
     .hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 6vw 4rem 8vw;position:relative;z-index:2}
     .hero-tag{display:inline-flex;align-items:center;gap:.6rem;margin-bottom:2rem;animation:fUp .8s .1s both}
@@ -66,7 +72,6 @@
     .btn-outline{background:transparent;color:var(--bark);border:1px solid var(--line)}
     .btn-outline:hover{border-color:var(--rose);color:var(--rose);transform:translateY(-2px)}
     .hero-right{position:relative;overflow:hidden}
-    .hero-right-img{width:100%;height:100%;object-fit:cover;object-position:center}
     .hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--cream) 0%,transparent 30%);z-index:1}
     .hero-badge{position:absolute;bottom:3rem;left:3rem;z-index:2;background:white;border-radius:12px;padding:1.2rem 1.5rem;box-shadow:0 12px 40px rgba(61,43,31,.12);animation:fUp .8s .7s both}
     .hero-badge-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--rose);line-height:1}
@@ -74,37 +79,36 @@
     .hero-deco{position:absolute;top:15%;right:8%;width:200px;height:200px;border-radius:50%;border:1px solid var(--nude);z-index:0;animation:spin 30s linear infinite}
     .hero-deco2{position:absolute;bottom:20%;right:20%;width:80px;height:80px;background:var(--blush);border-radius:50%;z-index:0}
 
-    /* ── MARQUEE ── */
+    /* MARQUEE */
     .marquee-wrap{background:var(--rose);padding:.9rem 0;overflow:hidden}
-    .marquee-track{display:flex;gap:0;animation:marquee 25s linear infinite;width:max-content}
+    .marquee-track{display:flex;animation:marquee 25s linear infinite;width:max-content}
     .marquee-item{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:white;padding:0 2.5rem;white-space:nowrap;display:flex;align-items:center;gap:1rem}
-    .marquee-item::after{content:'✦';opacity:.5}
+    .marquee-item::after{content:'***';opacity:.4;font-size:.5rem}
     @keyframes marquee{to{transform:translateX(-50%)}}
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     .sec{padding:7rem 8vw}
-    .sec-sm{padding:4rem 8vw}
     .sec-lbl{display:flex;align-items:center;gap:.8rem;margin-bottom:1rem}
     .sec-lbl::before{content:'';width:32px;height:1px;background:var(--rose)}
     .sec-lbl span{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
     .sec-h{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:1rem}
     .sec-sub{font-size:.97rem;color:var(--muted);line-height:1.9;max-width:500px}
 
-    /* ── SERVICES ── */
+    /* SERVICES */
     .services-bg{background:var(--blush)}
     .services-layout{display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start}
     .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-    .svc-card{background:white;border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:all .3s;cursor:default}
+    .svc-card{background:white;border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:all .3s}
     .svc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(61,43,31,.1)}
     .svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--rose-l))}
     .svc-icon{font-size:1.8rem;margin-bottom:1rem}
     .svc-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;margin-bottom:.5rem}
     .svc-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
-    .svc-price{font-size:.82rem;font-weight:600;color:var(--rose);letter-spacing:.05em}
+    .svc-price{font-size:.82rem;font-weight:600;color:var(--rose)}
     .svc-duration{font-size:.72rem;color:var(--muted);margin-left:.5rem}
 
-    /* ── PRICING ── */
-    .pricing-tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-bottom:2.5rem;overflow-x:auto;scrollbar-width:none}
+    /* PRICING */
+    .pricing-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:2.5rem;overflow-x:auto;scrollbar-width:none}
     .pricing-tabs::-webkit-scrollbar{display:none}
     .ptab{padding:.8rem 1.4rem;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap;transition:all .2s}
     .ptab.active,.ptab:hover{color:var(--rose);border-bottom-color:var(--rose)}
@@ -112,30 +116,23 @@
     .price-panel.active{display:block}
     .price-item{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;border-bottom:1px solid var(--line)}
     .price-item:last-child{border-bottom:none}
-    .price-item-name{font-size:.9rem;font-weight:400}
+    .price-item-name{font-size:.9rem}
     .price-item-dur{font-size:.75rem;color:var(--muted);margin-top:.2rem}
-    .price-item-right{text-align:right}
     .price-item-price{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--rose)}
-    .price-item-note{font-size:.7rem;color:var(--muted)}
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
     .about-img-wrap{position:relative}
-    .about-img{width:100%;border-radius:20px;display:block;aspect-ratio:4/5;object-fit:cover;background:var(--nude)}
     .about-img-placeholder{width:100%;aspect-ratio:4/5;border-radius:20px;background:linear-gradient(135deg,var(--nude),var(--blush));display:flex;align-items:center;justify-content:center;font-size:5rem}
     .about-badge{position:absolute;bottom:-1.5rem;right:-1.5rem;background:var(--rose);color:white;padding:1.5rem 1.8rem;border-radius:16px;text-align:center;box-shadow:0 12px 30px rgba(168,101,91,.35)}
     .about-badge-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;line-height:1}
     .about-badge-lbl{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;margin-top:.3rem}
-    .about-text p{color:var(--muted);line-height:2;font-size:.95rem;margin-bottom:1.2rem}
     .about-features{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
     .about-feat{display:flex;align-items:center;gap:.75rem;font-size:.85rem;font-weight:500;color:var(--bark2)}
-    .about-feat::before{content:'✓';color:var(--rose);font-weight:700;flex-shrink:0}
+    .about-feat::before{content:'checkmark';content:'✓';color:var(--rose);font-weight:700}
 
-    /* ── GALLERY ── */
+    /* GALLERY */
     .gallery-bg{background:var(--bark)}
-    .gallery-h{color:white}
-    .gallery-lbl .sec-lbl::before{background:var(--rose-l)}
-    .gallery-lbl .sec-lbl span{color:var(--rose-l)}
     .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:200px 200px;gap:3px;margin-top:3rem;border-radius:16px;overflow:hidden}
     .gcell{overflow:hidden;background:var(--bark2);position:relative;cursor:pointer}
     .gcell:nth-child(1){grid-column:span 2;grid-row:span 2}
@@ -143,9 +140,8 @@
     .gcell-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,var(--bark2),#5a3a2a);transition:transform .4s}
     .gcell:hover .gcell-ph{transform:scale(1.05)}
     .gcell-overlay{position:absolute;inset:0;background:rgba(168,101,91,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
-    .gcell-overlay svg{width:28px;height:28px;stroke:white;fill:none;stroke-width:1.5}
 
-    /* ── REVIEWS ── */
+    /* REVIEWS */
     .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
     .review-card{background:white;border-radius:16px;padding:2rem;position:relative;transition:all .3s}
     .review-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(61,43,31,.1)}
@@ -162,20 +158,19 @@
     .rs-count{font-size:.82rem;color:var(--muted)}
     .rs-bars{flex:1}
     .rs-bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.4rem}
-    .rs-bar-lbl{font-size:.72rem;color:var(--muted);width:52px;flex-shrink:0}
+    .rs-bar-lbl{font-size:.72rem;color:var(--muted);width:60px;flex-shrink:0}
     .rs-bar-wrap{flex:1;height:5px;background:var(--nude);border-radius:5px;overflow:hidden}
     .rs-bar-fill{height:100%;background:var(--gold);border-radius:5px}
 
-    /* ── BOOKING ── */
+    /* BOOKING */
     .booking-bg{background:linear-gradient(135deg,var(--rose) 0%,var(--rose-d) 100%);position:relative;overflow:hidden}
     .booking-bg::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;border-radius:50%;border:1px solid rgba(255,255,255,0.1)}
-    .booking-bg::after{content:'';position:absolute;bottom:-30%;left:-5%;width:350px;height:350px;border-radius:50%;background:rgba(255,255,255,0.04)}
     .booking-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
     .booking-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:white;line-height:1.1;margin-bottom:1rem}
     .booking-sub{color:rgba(255,255,255,.75);font-size:.95rem;line-height:1.9;margin-bottom:2rem}
     .booking-features{display:flex;flex-direction:column;gap:.75rem}
     .booking-feat{display:flex;align-items:center;gap:.75rem;color:rgba(255,255,255,.85);font-size:.88rem}
-    .booking-feat::before{content:'✓';width:22px;height:22px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;line-height:22px;text-align:center}
+    .booking-feat::before{content:'✓';width:22px;height:22px;background:rgba(255,255,255,.2);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
     .booking-form-card{background:white;border-radius:20px;padding:2.5rem;box-shadow:0 24px 60px rgba(61,43,31,.2)}
     .booking-form-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;margin-bottom:1.5rem;color:var(--bark)}
     .form-group{margin-bottom:1rem}
@@ -185,9 +180,9 @@
     .form-textarea{min-height:80px;resize:vertical}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
     .btn-book-form{width:100%;background:var(--rose);color:white;padding:1rem;border-radius:100px;font-family:'Jost',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;margin-top:.5rem;transition:all .25s}
-    .btn-book-form:hover{background:var(--rose-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(168,101,91,.35)}
+    .btn-book-form:hover{background:var(--rose-d);transform:translateY(-2px)}
 
-    /* ── HOURS + CONTACT ── */
+    /* CONTACT */
     .info-layout{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
     .info-card{background:var(--blush);padding:3rem 2.5rem}
     .info-card:first-child{border-radius:16px 0 0 16px}
@@ -201,10 +196,9 @@
     .contact-item{display:flex;align-items:center;gap:.75rem;font-size:.88rem;margin-bottom:.9rem;color:var(--bark2)}
     .contact-item a{color:inherit;text-decoration:none;transition:color .2s}
     .contact-item a:hover{color:var(--rose)}
-    .contact-ico{width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.95rem}
-    .map-embed{border-radius:0 16px 16px 0;overflow:hidden;height:100%;min-height:280px;background:var(--nude);display:flex;align-items:center;justify-content:center;font-size:2rem}
+    .contact-ico{width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer{background:var(--bark);padding:4rem 8vw 2rem}
     .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,.08)}
     .footer-brand{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:white;margin-bottom:.8rem}
@@ -215,35 +209,79 @@
     .footer-links a{font-size:.85rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
     .footer-links a:hover{color:var(--rose-l)}
     .footer-bot{display:flex;align-items:center;justify-content:space-between;padding-top:1.5rem;font-size:.75rem;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:.5rem}
-    .footer-socials{display:flex;gap:.75rem}
+    .footer-socials{display:flex;gap:.75rem;margin-top:1.5rem}
     .footer-social{width:36px;height:36px;background:rgba(255,255,255,.07);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;font-size:.8rem;transition:all .2s}
     .footer-social:hover{background:var(--rose);color:white}
 
-    /* ── ANIMATIONS ── */
+    /* ANIMATIONS */
     @keyframes fUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes fDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
     @keyframes spin{to{transform:rotate(360deg)}}
     .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
     .rv.v{opacity:1;transform:translateY(0)}
     .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}.rv-d4{transition-delay:.4s}
 
-    /* ── BACK TO TOP ── */
-    #btt{position:fixed;bottom:28px;right:28px;z-index:300;width:44px;height:44px;background:var(--rose);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:white;opacity:0;transform:translateY(10px);transition:all .3s;box-shadow:0 6px 20px rgba(168,101,91,.35)}
+    /* BACK TO TOP */
+    #btt{position:fixed;bottom:90px;right:28px;z-index:300;width:44px;height:44px;background:var(--rose);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:white;opacity:0;transform:translateY(10px);transition:all .3s;box-shadow:0 6px 20px rgba(168,101,91,.35)}
     #btt.show{opacity:1;transform:translateY(0)}
     #btt:hover{background:var(--rose-d)}
     #btt svg{width:16px;height:16px;stroke:white;fill:none;stroke-width:2.5;stroke-linecap:round}
 
-    /* ── RESPONSIVE ── */
+    /* CHAT */
+    #cfab{position:fixed;bottom:28px;right:28px;z-index:2000;width:56px;height:56px;background:var(--rose);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(168,101,91,.45);transition:all .3s}
+    #cfab:hover{background:var(--rose-d);transform:scale(1.07)}
+    #cfab .fm{width:22px;height:22px;display:block}
+    #cfab .fx{width:18px;height:18px;display:none}
+    #cfab.open .fm{display:none}
+    #cfab.open .fx{display:block}
+    .cfab-pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:var(--rose);animation:cfab-ring 2.2s ease-out infinite;opacity:0}
+    @keyframes cfab-ring{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.6);opacity:0}}
+    #cpanel{position:fixed;bottom:98px;right:28px;width:350px;max-height:500px;background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 50px rgba(61,43,31,.18);display:flex;flex-direction:column;z-index:1999;opacity:0;transform:translateY(14px) scale(.97);pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1)}
+    #cpanel.open{opacity:1;transform:none;pointer-events:all}
+    .ch-hdr{background:var(--bark);border-radius:18px 18px 0 0;padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+    .ch-ava{width:34px;height:34px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:white;flex-shrink:0;font-weight:700}
+    .ch-name{font-size:13px;font-weight:600;color:white;font-family:'Playfair Display',serif}
+    .ch-status{display:flex;align-items:center;gap:5px;margin-top:2px}
+    .ch-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink-d 2s infinite}
+    @keyframes blink-d{0%,100%{opacity:1}50%{opacity:.3}}
+    #chStatusTxt{font-size:10px;color:rgba(255,255,255,.45)}
+    .ch-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:0}
+    .ch-msgs::-webkit-scrollbar{width:3px}
+    .ch-msgs::-webkit-scrollbar-thumb{background:var(--nude);border-radius:3px}
+    .cm{display:flex;gap:8px;align-items:flex-start}
+    .cm.user{flex-direction:row-reverse}
+    .cm-a{width:26px;height:26px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;color:var(--rose);font-weight:700}
+    .cm.assistant .cm-a{background:var(--rose);color:white;font-family:'Playfair Display',serif;font-size:12px}
+    .cm-b{font-size:12.5px;line-height:1.6;padding:9px 12px;border-radius:12px;max-width:220px;word-break:break-word}
+    .cm.assistant .cm-b{background:var(--cream);color:var(--bark);border-radius:4px 12px 12px 12px}
+    .cm.user .cm-b{background:var(--rose);color:white;border-radius:12px 4px 12px 12px}
+    .cm-t{font-size:9.5px;color:var(--muted);margin-top:3px;padding:0 3px}
+    .cm.user .cm-t{text-align:right}
+    .ch-typing{display:flex;gap:4px;padding:9px 12px;background:var(--cream);border-radius:4px 12px 12px 12px;align-items:center}
+    .td{width:6px;height:6px;background:var(--nude);border-radius:50%;animation:td-b 1.2s infinite}
+    .td:nth-child(2){animation-delay:.15s}.td:nth-child(3){animation-delay:.3s}
+    @keyframes td-b{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+    .ch-qr{display:flex;flex-wrap:wrap;gap:5px;padding:8px 12px;border-top:1px solid var(--line);flex-shrink:0}
+    .ch-qb{font-size:10.5px;font-weight:500;padding:5px 9px;background:white;border:1px solid var(--line);border-radius:20px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s;color:var(--bark);white-space:nowrap}
+    .ch-qb:hover{background:var(--rose);color:white;border-color:var(--rose)}
+    .ch-in-area{display:flex;align-items:flex-end;gap:7px;padding:10px 12px;border-top:1px solid var(--line);flex-shrink:0}
+    .ch-in{flex:1;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12.5px;font-family:'Jost',sans-serif;resize:none;outline:none;line-height:1.4;max-height:72px;transition:border-color .2s;color:var(--bark);background:var(--cream)}
+    .ch-in:focus{border-color:var(--rose)}
+    .ch-send{width:34px;height:34px;background:var(--rose);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+    .ch-send:hover{background:var(--rose-d)}.ch-send:disabled{opacity:.45;cursor:not-allowed}
+    .ch-send svg{width:14px;height:14px}
+    .ch-note{font-size:9.5px;color:var(--muted);text-align:center;padding:4px 0 8px;flex-shrink:0}
+
+    /* RESPONSIVE */
     @media(max-width:1024px){
       .services-layout{grid-template-columns:1fr;gap:3rem}
       .about-layout,.booking-inner{grid-template-columns:1fr;gap:3rem}
       .info-layout{grid-template-columns:1fr;border-radius:16px;overflow:hidden}
-      .info-card:first-child,.info-card:last-child,.map-embed{border-radius:0}
+      .info-card:first-child,.info-card:last-child{border-radius:0}
       .footer-top{grid-template-columns:1fr 1fr}
       .reviews-grid{grid-template-columns:1fr 1fr}
     }
     @media(max-width:768px){
-      .nav-links,.nav-book{display:none}
+      .nav-links,.nav-right{display:none}
       .nav-ham{display:flex}
       .hero{grid-template-columns:1fr;min-height:auto}
       .hero-left{padding:8rem 6vw 3rem}
@@ -259,349 +297,272 @@
       .sec{padding:4rem 6vw}
       .hero-btns{flex-direction:column}
       .hero-btns .btn{text-align:center}
+      #cpanel{width:calc(100vw - 20px);right:10px;bottom:82px;max-height:70vh}
+      #cfab{bottom:14px;right:14px;width:50px;height:50px}
+      #btt{bottom:76px;right:14px}
     }
-  
-  /* ══ LANGUAGE DROPDOWN ══ */
-  .lang-drop{position:relative}
-  .lang-curr{background:none;border:1px solid var(--line);color:var(--bark2);padding:5px 10px;font-size:11px;font-weight:600;letter-spacing:0.08em;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px;border-radius:6px}
-  .lang-curr:hover{border-color:var(--rose);color:var(--rose)}
-  .lang-curr svg{opacity:.5;transition:transform .2s}
-  .lang-drop.open .lang-curr svg{transform:rotate(180deg)}
-  .lang-opts{display:none;position:absolute;top:calc(100% + 8px);right:0;background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:140px;box-shadow:0 12px 32px rgba(61,43,31,.15);z-index:9999}
-  .lang-drop.open .lang-opts{display:block}
-  .lang-opt{display:flex;align-items:center;gap:10px;width:100%;padding:9px 14px;font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all .15s;text-align:left}
-  .lang-opt:hover{background:var(--blush);color:var(--rose)}
-  .lang-opt.active-opt{color:var(--rose);font-weight:600}
-  .mob-lang{margin-top:.5rem}
-  .mob-lang .lang-curr{width:100%;justify-content:space-between;padding:10px 14px;border-radius:8px}
-  .mob-lang .lang-opts{position:static;box-shadow:none;border-radius:8px;margin-top:4px}
-  nav.scrolled .lang-curr{border-color:var(--line)}
-
-  /* ══ CHAT WIDGET ══ */
-  #cfab{position:fixed;bottom:28px;right:28px;z-index:2000;width:56px;height:56px;background:var(--rose);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(168,101,91,.45);transition:all .3s}
-  #cfab:hover{background:var(--rose-d);transform:scale(1.07)}
-  #cfab .fm{width:22px;height:22px;display:block}
-  #cfab .fx{width:18px;height:18px;display:none}
-  #cfab.open .fm{display:none}
-  #cfab.open .fx{display:block}
-  .cfab-pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:var(--rose);animation:cfab-ring 2.2s ease-out infinite;opacity:0}
-  @keyframes cfab-ring{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.6);opacity:0}}
-  #cpanel{position:fixed;bottom:98px;right:28px;width:350px;max-height:500px;background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 50px rgba(61,43,31,.18);display:flex;flex-direction:column;z-index:1999;opacity:0;transform:translateY(14px) scale(.97);pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1)}
-  #cpanel.open{opacity:1;transform:none;pointer-events:all}
-  .ch-hdr{background:var(--bark);border-radius:18px 18px 0 0;padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
-  .ch-ava{width:34px;height:34px;background:var(--rose);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:white;flex-shrink:0;font-weight:700}
-  .ch-name{font-size:13px;font-weight:600;color:white;font-family:'Playfair Display',serif}
-  .ch-status{display:flex;align-items:center;gap:5px;margin-top:2px}
-  .ch-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;animation:blink-d 2s infinite}
-  @keyframes blink-d{0%,100%{opacity:1}50%{opacity:.3}}
-  #chStatusTxt{font-size:10px;color:rgba(255,255,255,.45)}
-  .ch-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:0}
-  .ch-msgs::-webkit-scrollbar{width:3px}
-  .ch-msgs::-webkit-scrollbar-thumb{background:var(--nude);border-radius:3px}
-  .cm{display:flex;gap:8px;align-items:flex-start}
-  .cm.user{flex-direction:row-reverse}
-  .cm-a{width:26px;height:26px;border-radius:50%;background:var(--blush);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;color:var(--rose);font-weight:700}
-  .cm.assistant .cm-a{background:var(--rose);color:white;font-family:'Playfair Display',serif;font-size:12px}
-  .cm-b{font-size:12.5px;line-height:1.6;padding:9px 12px;border-radius:12px;max-width:220px;word-break:break-word}
-  .cm.assistant .cm-b{background:var(--cream);color:var(--bark);border-radius:4px 12px 12px 12px}
-  .cm.user .cm-b{background:var(--rose);color:white;border-radius:12px 4px 12px 12px}
-  .cm-t{font-size:9.5px;color:var(--muted);margin-top:3px;padding:0 3px}
-  .cm.user .cm-t{text-align:right}
-  .ch-typing{display:flex;gap:4px;padding:9px 12px;background:var(--cream);border-radius:4px 12px 12px 12px;align-items:center}
-  .td{width:6px;height:6px;background:var(--nude);border-radius:50%;animation:td-b 1.2s infinite}
-  .td:nth-child(2){animation-delay:.15s}.td:nth-child(3){animation-delay:.3s}
-  @keyframes td-b{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
-  .ch-qr{display:flex;flex-wrap:wrap;gap:5px;padding:8px 12px;border-top:1px solid var(--line);flex-shrink:0}
-  .ch-qb{font-size:10.5px;font-weight:500;padding:5px 9px;background:white;border:1px solid var(--line);border-radius:20px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s;color:var(--bark);white-space:nowrap}
-  .ch-qb:hover{background:var(--rose);color:white;border-color:var(--rose)}
-  .ch-in-area{display:flex;align-items:flex-end;gap:7px;padding:10px 12px;border-top:1px solid var(--line);flex-shrink:0}
-  .ch-in{flex:1;border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12.5px;font-family:'Jost',sans-serif;resize:none;outline:none;line-height:1.4;max-height:72px;transition:border-color .2s;color:var(--bark);background:var(--cream)}
-  .ch-in:focus{border-color:var(--rose)}
-  .ch-send{width:34px;height:34px;background:var(--rose);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
-  .ch-send:hover{background:var(--rose-d)}.ch-send:disabled{opacity:.45;cursor:not-allowed}
-  .ch-send svg{width:14px;height:14px}
-  .ch-note{font-size:9.5px;color:var(--muted);text-align:center;padding:4px 0 8px;flex-shrink:0}
-  @media(max-width:480px){#cpanel{width:calc(100vw - 20px);right:10px;bottom:82px;max-height:70vh}#cfab{bottom:14px;right:14px;width:50px;height:50px}}
   </style>
 </head>
 <body>
 
-<!-- NAV (unchanged) -->
 <nav id="nav">
   <div class="nav-logo">95 <span>Nail</span> Lab</div>
   <ul class="nav-links">
-    <li><a href="#services" data-cz="Služby" data-en="Services">Služby</a></li>
-    <li><a href="#pricing" data-cz="Ceník" data-en="Pricing">Ceník</a></li>
-    <li><a href="#about" data-cz="O nás" data-en="About">O nás</a></li>
-    <li><a href="#gallery" data-cz="Galerie" data-en="Gallery">Galerie</a></li>
-    <li><a href="#reviews" data-cz="Recenze" data-en="Reviews">Recenze</a></li>
-    <li><a href="#contact" data-cz="Kontakt" data-en="Contact">Kontakt</a></li>
+    <li><a href="#services" id="nav-services">Sluzby</a></li>
+    <li><a href="#pricing" id="nav-pricing">Cenik</a></li>
+    <li><a href="#about" id="nav-about">O nas</a></li>
+    <li><a href="#gallery" id="nav-gallery">Galerie</a></li>
+    <li><a href="#reviews" id="nav-reviews">Recenze</a></li>
+    <li><a href="#contact" id="nav-contact">Kontakt</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:.6rem">
+  <div class="nav-right">
     <div class="lang-drop" id="langDrop">
-      <button class="lang-curr" onclick="toggleLangDrop(event)">
-        <span id="langFlag">🇨🇿</span><span id="langLabel">CZ</span>
+      <button class="lang-curr" id="langCurrBtn">
+        <span id="langFlag">CZ</span>
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       </button>
       <div class="lang-opts" id="langOpts">
-        <button onclick="setLang('cz');toggleLangDrop()" class="lang-opt"><span>🇨🇿</span> Čeština</button>
-        <button onclick="setLang('en');toggleLangDrop()" class="lang-opt"><span>🇬🇧</span> English</button>
+        <button class="lang-opt" id="opt-cz">Cestina</button>
+        <button class="lang-opt" id="opt-en">English</button>
       </div>
     </div>
-    <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="nav-book" data-cz="Rezervovat →" data-en="Book now →">Rezervovat →</a>
+    <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="nav-book" id="navBook">Rezervovat</a>
   </div>
-  <div class="nav-ham" onclick="toggleMob()"><span></span><span></span><span></span></div>
+  <button class="nav-ham" id="navHam"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mob-menu" id="mobMenu">
-  <a href="#services" onclick="closeMob()" data-cz="Služby" data-en="Services">Služby</a>
-  <a href="#pricing" onclick="closeMob()" data-cz="Ceník" data-en="Pricing">Ceník</a>
-  <a href="#about" onclick="closeMob()" data-cz="O nás" data-en="About">O nás</a>
-  <a href="#gallery" onclick="closeMob()" data-cz="Galerie" data-en="Gallery">Galerie</a>
-  <a href="#reviews" onclick="closeMob()" data-cz="Recenze" data-en="Reviews">Recenze</a>
-  <a href="#contact" onclick="closeMob()" data-cz="Kontakt" data-en="Contact">Kontakt</a>
-  <div class="lang-drop mob-lang" id="langDropMob" style="margin-top:.5rem">
-    <button class="lang-curr" onclick="toggleLangDrop(event,'mob')" style="width:100%;justify-content:space-between">
-      <span><span id="langFlagMob">🇨🇿</span> <span id="langLabelMob">Čeština</span></span>
+  <a href="#services" id="mob-services">Sluzby</a>
+  <a href="#pricing" id="mob-pricing">Cenik</a>
+  <a href="#about" id="mob-about">O nas</a>
+  <a href="#gallery" id="mob-gallery">Galerie</a>
+  <a href="#reviews" id="mob-reviews">Recenze</a>
+  <a href="#contact" id="mob-contact">Kontakt</a>
+  <div class="lang-drop mob-lang" id="langDropMob">
+    <button class="lang-curr" id="langCurrMob">
+      <span id="langFlagMob">CZ</span>
       <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
     <div class="lang-opts" id="langOptsMob">
-      <button onclick="setLang('cz');toggleLangDrop(null,'mob');closeMob()" class="lang-opt"><span>🇨🇿</span> Čeština</button>
-      <button onclick="setLang('en');toggleLangDrop(null,'mob');closeMob()" class="lang-opt"><span>🇬🇧</span> English</button>
+      <button class="lang-opt" id="mob-opt-cz">Cestina</button>
+      <button class="lang-opt" id="mob-opt-en">English</button>
     </div>
   </div>
-  <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="mob-book" data-cz="Rezervovat online →" data-en="Book online →">Rezervovat online →</a>
+  <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="mob-book" id="mobBook">Rezervovat online</a>
 </div>
 
-<!-- HERO (unchanged) -->
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-deco"></div>
   <div class="hero-deco2"></div>
   <div class="hero-left">
     <div class="hero-tag">
       <div class="hero-tag-line"></div>
-      <span data-cz="Nehtové studio · Praha" data-en="Nail Studio · Prague">Nehtové studio · Praha</span>
+      <span id="heroTag">Nehtove studio Praha</span>
     </div>
-    <h1>Where nails<br>become <em>art.</em></h1>
-    <p class="hero-sub">Luxusní nehtové studio v srdci Prahy. Profesionální péče, prémiové materiály a výsledky, které potěší. Mluvíme česky i anglicky.</p>
+    <h1 id="heroH1">Where nails<br>become <em>art.</em></h1>
+    <p class="hero-sub" id="heroSub">Luxusni nehtove studio v srdci Prahy. Profesionalni pece, premiove materialy a vysledky, ktere potesi. Mluvime cesky i anglicky.</p>
     <div class="hero-rating">
-      <div class="hero-stars">★★★★★</div>
-      <div class="hero-rating-text"><strong data-cz="4.94 · 108 ověřených recenzí" data-en="4.94 · 108 verified reviews">4.94 · 108 ověřených recenzí</strong></div>
+      <div class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="hero-rating-text"><strong>4.94</strong> &middot; <span id="heroReviews">108 overených recenzí</span></div>
     </div>
     <div class="hero-btns">
-      <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose" data-cz="Rezervovat termín" data-en="Book appointment">Rezervovat termín</a>
-      <a href="#services" class="btn btn-outline" data-cz="Zobrazit služby" data-en="View services">Zobrazit služby</a>
+      <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose" id="heroBtn1">Rezervovat termín</a>
+      <a href="#services" class="btn btn-outline" id="heroBtn2">Zobrazit sluzby</a>
     </div>
   </div>
   <div class="hero-right">
-    <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8d5c4,#f5e6dd,#c9847a44);display:flex;align-items:center;justify-content:center;font-size:6rem">💅</div>
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#e8d5c4,#f5e6dd,#c9847a44);display:flex;align-items:center;justify-content:center;font-size:6rem">&#128133;</div>
     <div class="hero-badge">
       <div class="hero-badge-num">4.94</div>
-      <div class="hero-badge-lbl" data-cz="⭐ Perfektní hodnocení" data-en="⭐ Perfect rating">⭐ Perfektní hodnocení</div>
+      <div class="hero-badge-lbl" id="heroBadge">&#11088; Perfektní hodnocení</div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE (unchanged) -->
+<!-- MARQUEE -->
 <div class="marquee-wrap">
-  <div class="marquee-track">
-    <div class="marquee-item" data-cz="Gelové nehty" data-en="Gel Nails">Gelové nehty</div>
-    <div class="marquee-item" data-cz="Manikúra" data-en="Manicure">Manikúra</div>
-    <div class="marquee-item" data-cz="Nail Art" data-en="Nail Art">Nail Art</div>
-    <div class="marquee-item" data-cz="Francouzská manikúra" data-en="French Manicure">Francouzská manikúra</div>
-    <div class="marquee-item" data-cz="Nehtové doplňky" data-en="Nail Extras">Nehtové doplňky</div>
-    <div class="marquee-item" data-cz="Praha · Lípová 5" data-en="Prague · Lípová 5">Praha · Lípová 5</div>
-    <div class="marquee-item" data-cz="Open 7 dní" data-en="Open 7 days">Open 7 dní</div>
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item" id="mq1">Gelové nehty</div>
+    <div class="marquee-item" id="mq2">Manikúra</div>
+    <div class="marquee-item" id="mq3">Nail Art</div>
+    <div class="marquee-item" id="mq4">Francouzská manikúra</div>
+    <div class="marquee-item" id="mq5">Nehtové doplnky</div>
+    <div class="marquee-item" id="mq6">Praha Lípová 5</div>
+    <div class="marquee-item" id="mq7">Otevřeno 7 dní</div>
     <div class="marquee-item">Gelové nehty</div>
     <div class="marquee-item">Manikúra</div>
     <div class="marquee-item">Nail Art</div>
     <div class="marquee-item">Francouzská manikúra</div>
-    <div class="marquee-item">Nehtové doplňky</div>
-    <div class="marquee-item">Praha · Lípová 5</div>
-    <div class="marquee-item">Open 7 dní</div>
+    <div class="marquee-item">Nehtové doplnky</div>
+    <div class="marquee-item">Praha Lípová 5</div>
+    <div class="marquee-item">Otevřeno 7 dní</div>
   </div>
 </div>
 
-<!-- SERVICES (unchanged) -->
+<!-- SERVICES -->
 <section class="services-bg" id="services">
   <div class="sec">
     <div class="services-layout">
       <div>
-        <div class="sec-lbl rv"><span data-cz="Nabídka" data-en="Services">Nabídka</span></div>
-        <h2 class="sec-h rv rv-d1">Naše<br><em style="font-style:italic;color:var(--rose)">služby.</em></h2>
-        <p class="sec-sub rv rv-d2">Každý detail se počítá. Pracujeme s prémiové materiály a věnujeme se každé klientce individuálně.</p>
-        <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose rv rv-d3" style="margin-top:2rem;display:inline-block">Rezervovat →</a>
+        <div class="sec-lbl rv"><span id="secServices">Nabídka</span></div>
+        <h2 class="sec-h rv rv-d1" id="servicesH">Naše <em style="color:var(--rose)">sluzby.</em></h2>
+        <p class="sec-sub rv rv-d2" id="servicesSub">Každý detail se počítá. Pracujeme s prémiovými materiály a věnujeme se každé klientce individuálně.</p>
+        <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose rv rv-d3" style="margin-top:2rem;display:inline-block" id="servicesBtn">Rezervovat &rarr;</a>
       </div>
       <div class="services-grid">
-        <div class="svc-card rv rv-d1"><div class="svc-icon">💅</div><div class="svc-name" data-cz="Gelové nehty" data-en="Gel Nails">Gelové nehty</div><div class="svc-desc" data-cz="Dlouhotrvající gelové nehty ve vaší oblíbené délce a tvaru. Dokonalý výsledek garantován." data-en="Long-lasting gel nails in your favourite length and shape. Perfect results guaranteed.">Dlouhotrvající gelové nehty ve vaší oblíbené délce a tvaru. Dokonalý výsledek garantován.</div><div class="svc-price">od 800 Kč <span class="svc-duration">· 90 min</span></div></div>
-        <div class="svc-card rv rv-d2"><div class="svc-icon">✨</div><div class="svc-name" data-cz="Nail Art" data-en="Nail Art">Nail Art</div><div class="svc-desc" data-cz="Kreativní vzory, třpytky, folie, kamínky. Výtvarné umění na vašich nehtech." data-en="Creative patterns, glitter, foils, rhinestones. Art on your fingertips.">Kreativní vzory, třpytky, folie, kamínky. Výtvarné umění na vašich nehtech.</div><div class="svc-price">od 200 Kč <span class="svc-duration">· dle náročnosti</span></div></div>
-        <div class="svc-card rv rv-d3"><div class="svc-icon">🌸</div><div class="svc-name" data-cz="Manikúra" data-en="Manicure">Manikúra</div><div class="svc-desc" data-cz="Klasická nebo japonská manikúra s výběrem z pestré palety laků a olejíčků." data-en="Classic or Japanese manicure with a wide selection of polishes and oils.">Klasická nebo japonská manikúra s výběrem z pestré palety laků a olejíčků.</div><div class="svc-price">od 450 Kč <span class="svc-duration">· 60 min</span></div></div>
-        <div class="svc-card rv rv-d4"><div class="svc-icon">🇫🇷</div><div class="svc-name" data-cz="Francouzská manikúra" data-en="French Manicure">Francouzská manikúra</div><div class="svc-desc" data-cz="Nadčasová elegance. Přirozený vzhled s dokonale bílými špičkami pro každou příležitost." data-en="Timeless elegance. Natural look with perfectly white tips for any occasion.">Nadčasová elegance. Přirozený vzhled s dokonale bílými špičkami pro každou příležitost.</div><div class="svc-price">od 900 Kč <span class="svc-duration">· 90 min</span></div></div>
-        <div class="svc-card rv rv-d1"><div class="svc-icon">🔧</div><div class="svc-name" data-cz="Oprava & Doplnění" data-en="Repair & Infill">Oprava & Doplnění</div><div class="svc-desc" data-cz="Doplnění odrostlých nehtů nebo oprava poškozených. Zachováme váš stávající design." data-en="Infill of grown-out nails or repair of damaged ones. We keep your existing design.">Doplnění odrostlých nehtů nebo oprava poškozených. Zachováme váš stávající design.</div><div class="svc-price">od 600 Kč <span class="svc-duration">· 75 min</span></div></div>
-        <div class="svc-card rv rv-d2"><div class="svc-icon">💎</div><div class="svc-name" data-cz="Prémiový set" data-en="Premium Set">Prémiový set</div><div class="svc-desc" data-cz="Kompletní péče — nové gelové nehty + nail art + masáž rukou + péče o kůžičku." data-en="Complete care — new gel nails + nail art + hand massage + cuticle care.">Kompletní péče — nové gelové nehty + nail art + masáž rukou + péče o kůžičku.</div><div class="svc-price">od 1200 Kč <span class="svc-duration">· 120 min</span></div></div>
+        <div class="svc-card rv rv-d1"><div class="svc-icon">&#128133;</div><div class="svc-name" id="svc1n">Gelové nehty</div><div class="svc-desc" id="svc1d">Dlouhotrvající gelové nehty ve vaší oblíbené délce a tvaru. Dokonalý výsledek garantován.</div><div class="svc-price">od 800 Kč <span class="svc-duration">&middot; 90 min</span></div></div>
+        <div class="svc-card rv rv-d2"><div class="svc-icon">&#10024;</div><div class="svc-name" id="svc2n">Nail Art</div><div class="svc-desc" id="svc2d">Kreativní vzory, třpytky, folie, kamínky. Výtvarné umění na vašich nehtech.</div><div class="svc-price">od 200 Kč <span class="svc-duration">&middot; dle náročnosti</span></div></div>
+        <div class="svc-card rv rv-d3"><div class="svc-icon">&#127800;</div><div class="svc-name" id="svc3n">Manikúra</div><div class="svc-desc" id="svc3d">Klasická nebo japonská manikúra s výběrem z pestré palety laků a olejíčků.</div><div class="svc-price">od 450 Kč <span class="svc-duration">&middot; 60 min</span></div></div>
+        <div class="svc-card rv rv-d4"><div class="svc-icon">&#127467;&#127479;</div><div class="svc-name" id="svc4n">Francouzská manikúra</div><div class="svc-desc" id="svc4d">Nadčasová elegance. Přirozený vzhled s dokonale bílými špičkami pro každou příležitost.</div><div class="svc-price">od 900 Kč <span class="svc-duration">&middot; 90 min</span></div></div>
+        <div class="svc-card rv rv-d1"><div class="svc-icon">&#128295;</div><div class="svc-name" id="svc5n">Oprava &amp; Doplnění</div><div class="svc-desc" id="svc5d">Doplnění odrostlých nehtů nebo oprava poškozených. Zachováme váš stávající design.</div><div class="svc-price">od 600 Kč <span class="svc-duration">&middot; 75 min</span></div></div>
+        <div class="svc-card rv rv-d2"><div class="svc-icon">&#128142;</div><div class="svc-name" id="svc6n">Prémiový set</div><div class="svc-desc" id="svc6d">Kompletní péče — nové gelové nehty + nail art + masáž rukou + péče o kůžičku.</div><div class="svc-price">od 1200 Kč <span class="svc-duration">&middot; 120 min</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING (unchanged) -->
+<!-- PRICING -->
 <section id="pricing">
   <div class="sec">
-    <div class="sec-lbl rv"><span data-cz="Ceník" data-en="Pricing">Ceník</span></div>
-    <h2 class="sec-h rv rv-d1">Transparentní<br><em style="font-style:italic;color:var(--rose)">ceny.</em></h2>
-    <p class="sec-sub rv rv-d2" style="margin-bottom:2.5rem">Žádná překvapení. Přesné ceny vždy dopředu. Záloha není vyžadována.</p>
+    <div class="sec-lbl rv"><span id="secPricing">Ceník</span></div>
+    <h2 class="sec-h rv rv-d1" id="pricingH">Transparentní <em style="color:var(--rose)">ceny.</em></h2>
+    <p class="sec-sub rv rv-d2" id="pricingSub" style="margin-bottom:2.5rem">Žádná překvapení. Přesné ceny vždy dopředu. Záloha není vyžadována.</p>
     <div class="pricing-tabs rv">
-      <button class="ptab active" onclick="showTab(this,'tab-gel')">Gelové nehty</button>
-      <button class="ptab" onclick="showTab(this,'tab-mani')">Manikúra</button>
-      <button class="ptab" onclick="showTab(this,'tab-art')">Nail Art</button>
-      <button class="ptab" onclick="showTab(this,'tab-extras')">Doplňky</button>
+      <button class="ptab active" onclick="showTab(this,'tab-gel')" id="tab-btn-gel">Gelové nehty</button>
+      <button class="ptab" onclick="showTab(this,'tab-mani')" id="tab-btn-mani">Manikúra</button>
+      <button class="ptab" onclick="showTab(this,'tab-art')" id="tab-btn-art">Nail Art</button>
+      <button class="ptab" onclick="showTab(this,'tab-extras')" id="tab-btn-extras">Doplnky</button>
     </div>
     <div class="price-panel active" id="tab-gel">
-      <div class="price-item"><div><div class="price-item-name">Nová sada — krátké</div><div class="price-item-dur">90 min</div></div><div class="price-item-right"><div class="price-item-price">800 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Nová sada — střední</div><div class="price-item-dur">100 min</div></div><div class="price-item-right"><div class="price-item-price">900 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Nová sada — dlouhé</div><div class="price-item-dur">110 min</div></div><div class="price-item-right"><div class="price-item-price">1 000 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Doplnění</div><div class="price-item-dur">75 min</div></div><div class="price-item-right"><div class="price-item-price">600 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Francouzská manikúra (gel)</div><div class="price-item-dur">90 min</div></div><div class="price-item-right"><div class="price-item-price">950 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Odstranění gelových nehtů</div><div class="price-item-dur">45 min</div></div><div class="price-item-right"><div class="price-item-price">250 Kč</div></div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-gel1">Nová sada — krátké</div><div class="price-item-dur">90 min</div></div><div class="price-item-price">800 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-gel2">Nová sada — střední</div><div class="price-item-dur">100 min</div></div><div class="price-item-price">900 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-gel3">Nová sada — dlouhé</div><div class="price-item-dur">110 min</div></div><div class="price-item-price">1 000 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-gel4">Doplnění</div><div class="price-item-dur">75 min</div></div><div class="price-item-price">600 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-gel5">Francouzská manikúra (gel)</div><div class="price-item-dur">90 min</div></div><div class="price-item-price">950 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-gel6">Odstranění gelových nehtů</div><div class="price-item-dur">45 min</div></div><div class="price-item-price">250 Kč</div></div>
     </div>
     <div class="price-panel" id="tab-mani">
-      <div class="price-item"><div><div class="price-item-name">Klasická manikúra</div><div class="price-item-dur">45 min</div></div><div class="price-item-right"><div class="price-item-price">450 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Japonská manikúra</div><div class="price-item-dur">60 min</div></div><div class="price-item-right"><div class="price-item-price">550 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Gel lak</div><div class="price-item-dur">60 min</div></div><div class="price-item-right"><div class="price-item-price">500 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Manikúra + gel lak</div><div class="price-item-dur">75 min</div></div><div class="price-item-right"><div class="price-item-price">700 Kč</div></div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-m1">Klasická manikúra</div><div class="price-item-dur">45 min</div></div><div class="price-item-price">450 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-m2">Japonská manikúra</div><div class="price-item-dur">60 min</div></div><div class="price-item-price">550 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-m3">Gel lak</div><div class="price-item-dur">60 min</div></div><div class="price-item-price">500 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-m4">Manikúra + gel lak</div><div class="price-item-dur">75 min</div></div><div class="price-item-price">700 Kč</div></div>
     </div>
     <div class="price-panel" id="tab-art">
-      <div class="price-item"><div><div class="price-item-name">Jednoduchý nail art (1 prst)</div><div class="price-item-dur">+10 min</div></div><div class="price-item-right"><div class="price-item-price">50 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Nail art (všechny prsty)</div><div class="price-item-dur">+30 min</div></div><div class="price-item-right"><div class="price-item-price">200–500 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Folie & chrom efekty</div><div class="price-item-dur">+20 min</div></div><div class="price-item-right"><div class="price-item-price">150 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">3D dekorace & kamínky</div><div class="price-item-dur">dle náročnosti</div></div><div class="price-item-right"><div class="price-item-price">od 100 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Ombré / Baby boomer</div><div class="price-item-dur">+20 min</div></div><div class="price-item-right"><div class="price-item-price">200 Kč</div></div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-a1">Jednoduchý nail art (1 prst)</div><div class="price-item-dur">+10 min</div></div><div class="price-item-price">50 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-a2">Nail art (všechny prsty)</div><div class="price-item-dur">+30 min</div></div><div class="price-item-price">200–500 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-a3">Folie &amp; chrom efekty</div><div class="price-item-dur">+20 min</div></div><div class="price-item-price">150 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-a4">3D dekorace &amp; kamínky</div><div class="price-item-dur">dle náročnosti</div></div><div class="price-item-price">od 100 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-a5">Ombré / Baby boomer</div><div class="price-item-dur">+20 min</div></div><div class="price-item-price">200 Kč</div></div>
     </div>
     <div class="price-panel" id="tab-extras">
-      <div class="price-item"><div><div class="price-item-name">Oprava 1 nehtu</div><div class="price-item-dur">15 min</div></div><div class="price-item-right"><div class="price-item-price">80 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Masáž rukou</div><div class="price-item-dur">15 min</div></div><div class="price-item-right"><div class="price-item-price">150 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Parafínový zábal</div><div class="price-item-dur">20 min</div></div><div class="price-item-right"><div class="price-item-price">200 Kč</div></div></div>
-      <div class="price-item"><div><div class="price-item-name">Výztuha nehtu (1 prst)</div><div class="price-item-dur">15 min</div></div><div class="price-item-right"><div class="price-item-price">60 Kč</div></div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-e1">Oprava 1 nehtu</div><div class="price-item-dur">15 min</div></div><div class="price-item-price">80 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-e2">Masáž rukou</div><div class="price-item-dur">15 min</div></div><div class="price-item-price">150 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-e3">Parafínový zábal</div><div class="price-item-dur">20 min</div></div><div class="price-item-price">200 Kč</div></div>
+      <div class="price-item"><div><div class="price-item-name" id="p-e4">Výztuha nehtu (1 prst)</div><div class="price-item-dur">15 min</div></div><div class="price-item-price">60 Kč</div></div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT (unchanged) -->
+<!-- ABOUT -->
 <section style="background:var(--blush)" id="about">
   <div class="sec">
     <div class="about-layout">
       <div class="about-img-wrap rv">
-        <div class="about-img-placeholder">🌸</div>
+        <div class="about-img-placeholder">&#127800;</div>
         <div class="about-badge">
           <div class="about-badge-num">108</div>
-          <div class="about-badge-lbl" data-cz="Spokojených klientek" data-en="Happy clients">Spokojených klientek</div>
+          <div class="about-badge-lbl" id="aboutBadge">Spokojených klientek</div>
         </div>
       </div>
       <div class="rv rv-d2">
-        <div class="sec-lbl"><span data-cz="O nás" data-en="About us">O nás</span></div>
-        <h2 class="sec-h">Vášeň pro<br><em style="font-style:italic;color:var(--rose)">detail.</em></h2>
-        <p style="color:var(--muted);line-height:2;font-size:.95rem;margin-bottom:1rem">95 Nail Lab je nehtové studio v Praze na Lípové 5, kde věříme, že péče o nehty je víc než jen kosmetický zákrok — je to chvíle jen pro vás.</p>
-        <p style="color:var(--muted);line-height:2;font-size:.95rem;margin-bottom:1.5rem">Pracujeme výhradně s prémiovými materiály, dbáme na hygienu a nabízíme přátelskou atmosféru. U nás se domluvíte česky i anglicky.</p>
+        <div class="sec-lbl"><span id="secAbout">O nás</span></div>
+        <h2 class="sec-h" id="aboutH">Vášeň pro <em style="color:var(--rose)">detail.</em></h2>
+        <p style="color:var(--muted);line-height:2;font-size:.95rem;margin-bottom:1rem" id="aboutP1">95 Nail Lab je nehtové studio v Praze na Lípové 5, kde věříme, že péče o nehty je víc než jen kosmetický zákrok — je to chvíle jen pro vás.</p>
+        <p style="color:var(--muted);line-height:2;font-size:.95rem;margin-bottom:1.5rem" id="aboutP2">Pracujeme výhradně s prémiovými materiály, dbáme na hygienu a nabízíme přátelskou atmosféru. U nás se domluvíte česky i anglicky.</p>
         <div class="about-features">
-          <div class="about-feat">Prémiové materiály</div>
-          <div class="about-feat">Přísná hygiena</div>
-          <div class="about-feat">Česky &amp; anglicky</div>
-          <div class="about-feat">Individuální přístup</div>
-          <div class="about-feat">Otevřeno 7 dní</div>
-          <div class="about-feat">Online rezervace</div>
+          <div class="about-feat" id="af1">Prémiové materiály</div>
+          <div class="about-feat" id="af2">Přísná hygiena</div>
+          <div class="about-feat" id="af3">Česky &amp; anglicky</div>
+          <div class="about-feat" id="af4">Individuální přístup</div>
+          <div class="about-feat" id="af5">Otevřeno 7 dní</div>
+          <div class="about-feat" id="af6">Online rezervace</div>
         </div>
-        <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose" style="margin-top:2rem;display:inline-block">Rezervovat termín →</a>
+        <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose" style="margin-top:2rem;display:inline-block" id="aboutBtn">Rezervovat termín &rarr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY (unchanged) -->
+<!-- GALLERY -->
 <section class="gallery-bg" id="gallery">
   <div class="sec">
-    <div class="gallery-lbl">
-      <div class="sec-lbl rv"><span style="color:var(--rose-l)">Galerie</span></div>
-    </div>
-    <h2 class="sec-h gallery-h rv rv-d1">Naše <em style="font-style:italic;color:var(--rose-l)">práce.</em></h2>
-    <p class="rv rv-d2" style="color:rgba(255,255,255,.45);font-size:.9rem;max-width:460px">Každý set je originál. Prohlédněte si naše nejoblíbenější kreace a nechte se inspirovat.</p>
+    <div class="sec-lbl rv" style="--rose:var(--rose-l)"><span id="secGallery" style="color:var(--rose-l)">Galerie</span></div>
+    <h2 class="sec-h rv rv-d1" style="color:white" id="galleryH">Naše <em style="color:var(--rose-l)">práce.</em></h2>
+    <p class="rv rv-d2" style="color:rgba(255,255,255,.45);font-size:.9rem;max-width:460px" id="gallerySub">Každý set je originál. Prohlédněte si naše nejoblíbenější kreace a nechte se inspirovat.</p>
     <div class="gallery-grid rv rv-d3">
-      <div class="gcell"><div class="gcell-ph">💅</div><div class="gcell-overlay"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-      <div class="gcell"><div class="gcell-ph">✨</div><div class="gcell-overlay"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-      <div class="gcell"><div class="gcell-ph">🌸</div><div class="gcell-overlay"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-      <div class="gcell"><div class="gcell-ph">💎</div><div class="gcell-overlay"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-      <div class="gcell"><div class="gcell-ph">🎀</div><div class="gcell-overlay"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+      <div class="gcell"><div class="gcell-ph">&#128133;</div><div class="gcell-overlay"></div></div>
+      <div class="gcell"><div class="gcell-ph">&#10024;</div><div class="gcell-overlay"></div></div>
+      <div class="gcell"><div class="gcell-ph">&#127800;</div><div class="gcell-overlay"></div></div>
+      <div class="gcell"><div class="gcell-ph">&#128142;</div><div class="gcell-overlay"></div></div>
+      <div class="gcell"><div class="gcell-ph">&#127880;</div><div class="gcell-overlay"></div></div>
     </div>
-    <p style="color:rgba(255,255,255,.3);font-size:.8rem;margin-top:1.2rem;text-align:center">→ Nahraďte emoji skutečnými fotografiemi vašich prací</p>
+    <p style="color:rgba(255,255,255,.3);font-size:.8rem;margin-top:1.2rem;text-align:center" id="galleryNote">Nahradte emoji skutecnymi fotografiemi vasich praci</p>
   </div>
 </section>
 
-<!-- REVIEWS (unchanged) -->
+<!-- REVIEWS -->
 <section id="reviews">
   <div class="sec">
-    <div class="sec-lbl rv"><span data-cz="Recenze" data-en="Reviews">Recenze</span></div>
-    <h2 class="sec-h rv rv-d1">Co říkají<br><em style="font-style:italic;color:var(--rose)">klientky.</em></h2>
+    <div class="sec-lbl rv"><span id="secReviews">Recenze</span></div>
+    <h2 class="sec-h rv rv-d1" id="reviewsH">Co říkají <em style="color:var(--rose)">klientky.</em></h2>
     <div class="review-summary rv rv-d2">
       <div style="text-align:center">
         <div class="rs-num">4.94</div>
-        <div class="rs-stars">★★★★★</div>
-        <div class="rs-count" data-cz="108 ověřených recenzí" data-en="108 verified reviews">108 ověřených recenzí</div>
+        <div class="rs-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="rs-count" id="reviewCount">108 ověřených recenzí</div>
       </div>
       <div class="rs-bars" style="flex:1">
-        <div class="rs-bar-row"><span class="rs-bar-lbl">Perfektní</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:97%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">105</span></div>
-        <div class="rs-bar-row"><span class="rs-bar-lbl">Skvělé</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:2%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">1</span></div>
-        <div class="rs-bar-row"><span class="rs-bar-lbl">Dobré</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:1%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">1</span></div>
-        <div class="rs-bar-row"><span class="rs-bar-lbl">Horší</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:0%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">0</span></div>
-        <div class="rs-bar-row"><span class="rs-bar-lbl">Hrozné</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:1%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">1</span></div>
+        <div class="rs-bar-row"><span class="rs-bar-lbl" id="rb1">Perfektní</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:97%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">105</span></div>
+        <div class="rs-bar-row"><span class="rs-bar-lbl" id="rb2">Skvělé</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:2%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">1</span></div>
+        <div class="rs-bar-row"><span class="rs-bar-lbl" id="rb3">Dobré</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:1%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">1</span></div>
+        <div class="rs-bar-row"><span class="rs-bar-lbl" id="rb4">Horší</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:0%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">0</span></div>
+        <div class="rs-bar-row"><span class="rs-bar-lbl" id="rb5">Hrozné</span><div class="rs-bar-wrap"><div class="rs-bar-fill" style="width:1%"></div></div><span style="font-size:.72rem;color:var(--muted);margin-left:.5rem">1</span></div>
       </div>
-      <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose" style="flex-shrink:0">Číst všechny recenze</a>
+      <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn btn-rose" style="flex-shrink:0" id="readReviews">Číst všechny recenze</a>
     </div>
     <div class="reviews-grid">
-      <div class="review-card rv rv-d1">
-        <div class="review-quote">"</div>
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">Skvělý salón, navštěvuji ho již rok a nikdy jsem neodcházela nespokojená. Vždy perfektní výsledek!</div>
-        <div class="review-author"><div class="review-av">A</div><div><div class="review-name">Anastazie</div><div class="review-date">Červen 2026 · Reservio</div></div></div>
-      </div>
-      <div class="review-card rv rv-d2">
-        <div class="review-quote">"</div>
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">Slečna je skvělá a nehty vždy podle představ 😁 Profesionální přístup a příjemná atmosféra. Doporučuji!</div>
-        <div class="review-author"><div class="review-av">M</div><div><div class="review-name">Marika</div><div class="review-date">Únor 2026 · Reservio</div></div></div>
-      </div>
-      <div class="review-card rv rv-d3">
-        <div class="review-quote">"</div>
-        <div class="review-stars">★★★★★</div>
-        <div class="review-text">Vše bylo skvěle, slečna byla velmi šikovná. Precizní nehty za dobrou cenu. Těším se na příště!</div>
-        <div class="review-author"><div class="review-av">L</div><div><div class="review-name">Lenka</div><div class="review-date">Leden 2026 · Reservio</div></div></div>
-      </div>
+      <div class="review-card rv rv-d1"><div class="review-quote">"</div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-text" id="rev1">Skvělý salón, navštěvuji ho již rok a nikdy jsem neodcházela nespokojená. Vždy perfektní výsledek!</div><div class="review-author"><div class="review-av">A</div><div><div class="review-name">Anastazie</div><div class="review-date">Červen 2026 &middot; Reservio</div></div></div></div>
+      <div class="review-card rv rv-d2"><div class="review-quote">"</div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-text" id="rev2">Slečna je skvělá a nehty vždy podle představ. Profesionální přístup a příjemná atmosféra. Doporučuji!</div><div class="review-author"><div class="review-av">M</div><div><div class="review-name">Marika</div><div class="review-date">Únor 2026 &middot; Reservio</div></div></div></div>
+      <div class="review-card rv rv-d3"><div class="review-quote">"</div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-text" id="rev3">Vše bylo skvěle, slečna byla velmi šikovná. Precizní nehty za dobrou cenu. Těším se na příště!</div><div class="review-author"><div class="review-av">L</div><div><div class="review-name">Lenka</div><div class="review-date">Leden 2026 &middot; Reservio</div></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- BOOKING (unchanged) -->
+<!-- BOOKING -->
 <section class="booking-bg" id="booking">
   <div class="sec">
     <div class="booking-inner">
       <div class="rv">
-        <h2 class="booking-title">Rezervujte<br><em style="font-style:italic">svůj termín.</em></h2>
-        <p class="booking-sub" data-cz="Jednoduchá online rezervace za méně než 2 minuty. Bez zálohy, bez stresu." data-en="Easy online booking in under 2 minutes. No deposit, no stress.">Jednoduchá online rezervace za méně než 2 minuty. Bez zálohy, bez stresu.</p>
+        <h2 class="booking-title" id="bookingTitle">Rezervujte <em>svůj termín.</em></h2>
+        <p class="booking-sub" id="bookingSub">Jednoduchá online rezervace za méně než 2 minuty. Bez zálohy, bez stresu.</p>
         <div class="booking-features">
-          <div class="booking-feat" data-cz="Rezervace online 24/7" data-en="Online booking 24/7">Rezervace online 24/7</div>
-          <div class="booking-feat" data-cz="Potvrzení emailem okamžitě" data-en="Instant email confirmation">Potvrzení emailem okamžitě</div>
-          <div class="booking-feat" data-cz="Bezplatné zrušení 24h předem" data-en="Free cancellation 24h before">Bezplatné zrušení 24h předem</div>
-          <div class="booking-feat" data-cz="Žádná záloha" data-en="No deposit required">Žádná záloha</div>
-          <div class="booking-feat" data-cz="Připomínka před termínem" data-en="Reminder before appointment">Připomínka před termínem</div>
+          <div class="booking-feat" id="bf1">Rezervace online 24/7</div>
+          <div class="booking-feat" id="bf2">Potvrzení emailem okamžitě</div>
+          <div class="booking-feat" id="bf3">Bezplatné zrušení 24h předem</div>
+          <div class="booking-feat" id="bf4">Žádná záloha</div>
+          <div class="booking-feat" id="bf5">Připomínka před termínem</div>
         </div>
-        <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn" style="background:white;color:var(--rose);margin-top:2.5rem;display:inline-block;font-weight:700">Otevřít rezervaci →</a>
+        <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="btn" style="background:white;color:var(--rose);margin-top:2.5rem;display:inline-block;font-weight:700" id="openBooking">Otevřít rezervaci &rarr;</a>
       </div>
       <div class="booking-form-card rv rv-d2">
-        <div class="booking-form-title" data-cz="Rychlá poptávka" data-en="Quick inquiry">Rychlá poptávka</div>
+        <div class="booking-form-title" id="formTitle">Rychlá poptávka</div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Jméno</label><input class="form-input" type="text" placeholder="Jana Nováková"/></div>
-          <div class="form-group"><label class="form-label">Telefon</label><input class="form-input" type="tel" placeholder="+420 ..."/></div>
+          <div class="form-group"><label class="form-label" id="labelName">Jméno</label><input class="form-input" type="text" id="cfName" placeholder="Jana Nováková"/></div>
+          <div class="form-group"><label class="form-label" id="labelPhone">Telefon</label><input class="form-input" type="tel" id="cfPhone" placeholder="+420 ..."/></div>
         </div>
-        <div class="form-group"><label class="form-label">Služba</label>
-          <select class="form-select">
+        <div class="form-group"><label class="form-label" id="labelService">Služba</label>
+          <select class="form-select" id="cfService">
             <option>Vyberte službu</option>
             <option>Gelové nehty — nová sada</option>
             <option>Doplnění</option>
@@ -611,246 +572,562 @@
             <option>Prémiový set</option>
           </select>
         </div>
-        <div class="form-group"><label class="form-label">Preferovaný termín</label><input class="form-input" type="datetime-local"/></div>
-        <div class="form-group"><label class="form-label">Poznámka (nepovinné)</label><textarea class="form-textarea" placeholder="Přání k designu, alergeny..."></textarea></div>
-        <button class="btn-book-form" onclick="submitInquiry()">Odeslat poptávku →</button>
-        <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:.75rem">Nebo rezervujte přímo přes <a href="https://www.reservio.cz/b/95naillab" target="_blank" style="color:var(--rose)">Reservio</a></p>
+        <div class="form-group"><label class="form-label" id="labelDate">Preferovaný termín</label><input class="form-input" type="datetime-local"/></div>
+        <div class="form-group"><label class="form-label" id="labelNote">Poznámka</label><textarea class="form-textarea" id="cfNote" placeholder="Přání k designu, alergeny..."></textarea></div>
+        <button class="btn-book-form" onclick="submitInquiry()" id="submitBtn">Odeslat poptávku &rarr;</button>
+        <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:.75rem" id="orBook">Nebo rezervujte přes <a href="https://www.reservio.cz/b/95naillab" target="_blank" style="color:var(--rose)">Reservio</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOURS + CONTACT (unchanged) -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="sec">
-    <div class="sec-lbl rv"><span data-cz="Kontakt" data-en="Contact">Kontakt</span></div>
-    <h2 class="sec-h rv rv-d1" style="margin-bottom:2.5rem">Najdete nás<br><em style="font-style:italic;color:var(--rose)">v Praze.</em></h2>
+    <div class="sec-lbl rv"><span id="secContact">Kontakt</span></div>
+    <h2 class="sec-h rv rv-d1" style="margin-bottom:2.5rem" id="contactH">Najdete nás <em style="color:var(--rose)">v Praze.</em></h2>
     <div class="info-layout rv rv-d2">
       <div class="info-card">
-        <div class="info-icon">🕐</div>
-        <div class="info-title" data-cz="Otevírací hodiny" data-en="Opening hours">Otevírací hodiny</div>
-        <div class="hours-row"><span class="hours-day" data-cz="Pondělí – Pátek" data-en="Monday – Friday">Pondělí – Pátek</span><span class="hours-time">9:00 – 20:00</span></div>
-        <div class="hours-row"><span class="hours-day" data-cz="Sobota" data-en="Saturday">Sobota</span><span class="hours-time">9:00 – 19:00</span></div>
-        <div class="hours-row"><span class="hours-day" data-cz="Neděle" data-en="Sunday">Neděle</span><span class="hours-time">10:00 – 19:00</span></div>
+        <div class="info-icon">&#128336;</div>
+        <div class="info-title" id="hoursTitle">Otevírací hodiny</div>
+        <div class="hours-row"><span class="hours-day" id="hd1">Pondělí – Pátek</span><span class="hours-time">9:00 – 20:00</span></div>
+        <div class="hours-row"><span class="hours-day" id="hd2">Sobota</span><span class="hours-time">9:00 – 19:00</span></div>
+        <div class="hours-row"><span class="hours-day" id="hd3">Neděle</span><span class="hours-time">10:00 – 19:00</span></div>
       </div>
       <div class="info-card">
-        <div class="info-icon">📍</div>
-        <div class="info-title" data-cz="Kontaktní údaje" data-en="Contact details">Kontaktní údaje</div>
-        <div class="contact-item"><div class="contact-ico">📞</div><a href="tel:+420728707436">+420 728 707 436</a></div>
-        <div class="contact-item"><div class="contact-ico">📍</div><a href="https://maps.google.com/?q=Lípová+5,Praha" target="_blank">Lípová 5, Praha</a></div>
-        <div class="contact-item"><div class="contact-ico">📸</div><a href="https://www.instagram.com/95naillab.cz/" target="_blank">@95naillab.cz</a></div>
-        <div class="contact-item"><div class="contact-ico">🌐</div><a href="https://www.reservio.cz/b/95naillab" target="_blank">Online rezervace</a></div>
+        <div class="info-icon">&#128205;</div>
+        <div class="info-title" id="contactTitle">Kontaktní údaje</div>
+        <div class="contact-item"><div class="contact-ico">&#128222;</div><a href="tel:+420728707436">+420 728 707 436</a></div>
+        <div class="contact-item"><div class="contact-ico">&#128205;</div><a href="https://maps.google.com/?q=Lipova+5+Praha" target="_blank">Lípová 5, Praha</a></div>
+        <div class="contact-item"><div class="contact-ico">&#128248;</div><a href="https://www.instagram.com/95naillab.cz/" target="_blank">@95naillab.cz</a></div>
+        <div class="contact-item"><div class="contact-ico">&#127760;</div><a href="https://www.reservio.cz/b/95naillab" target="_blank" id="onlineBooking">Online rezervace</a></div>
       </div>
-      <div class="map-embed">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.7!2d14.4254!3d50.0768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b94f1b5a3a2a7%3A0xa3b0b0b0b0b0b0b0!2sL%C3%ADpov%C3%A1+5%2C+Praha!5e0!3m2!1scs!2scz!4v1699000000003" width="100%" height="100%" style="border:0;min-height:280px" allowfullscreen loading="lazy"></iframe>
+      <div style="background:var(--blush);border-radius:0;overflow:hidden;min-height:280px">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.7!2d14.4254!3d50.0768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b94f1b5a3a2a7%3A0xa3b0b0b0b0b0b0b0!2sL%C3%ADpov%C3%A1+5%2C+Praha!5e0!3m2!1scs!2scz!4v1699000000003" width="100%" height="100%" style="border:0;min-height:280px;display:block" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER (unchanged) -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
       <div class="footer-brand">95 <span>Nail</span> Lab</div>
-      <p class="footer-tagline">Luxusní nehtové studio v srdci Prahy.<br>Lípová 5 · Otevřeno 7 dní v týdnu.<br>Česky &amp; English spoken.</p>
-      <div class="footer-socials" style="margin-top:1.5rem">
-        <a href="https://www.instagram.com/95naillab.cz/" target="_blank" class="footer-social">📸</a>
-        <a href="https://www.facebook.com" target="_blank" class="footer-social">👥</a>
-        <a href="tel:+420728707436" class="footer-social">📞</a>
+      <p class="footer-tagline" id="footerTagline">Luxusní nehtové studio v srdci Prahy.<br>Lípová 5 &middot; Otevřeno 7 dní v týdnu.<br>Česky &amp; English spoken.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/95naillab.cz/" target="_blank" class="footer-social">IG</a>
+        <a href="tel:+420728707436" class="footer-social">&#128222;</a>
+        <a href="https://www.reservio.cz/b/95naillab" target="_blank" class="footer-social">&#127760;</a>
       </div>
     </div>
     <div>
-      <div class="footer-heading" data-cz="Rychlé odkazy" data-en="Quick links">Rychlé odkazy</div>
+      <div class="footer-heading" id="footerLinks">Rychlé odkazy</div>
       <ul class="footer-links">
-        <li><a href="#services" data-cz="Naše služby" data-en="Our services">Naše služby</a></li>
-        <li><a href="#pricing" data-cz="Ceník" data-en="Pricing">Ceník</a></li>
-        <li><a href="#about" data-cz="O nás" data-en="About us">O nás</a></li>
-        <li><a href="#gallery" data-cz="Galerie" data-en="Gallery">Galerie</a></li>
-        <li><a href="#reviews" data-cz="Recenze" data-en="Reviews">Recenze</a></li>
-        <li><a href="https://www.reservio.cz/b/95naillab" target="_blank">Online rezervace →</a></li>
+        <li><a href="#services" id="fl1">Naše služby</a></li>
+        <li><a href="#pricing" id="fl2">Ceník</a></li>
+        <li><a href="#about" id="fl3">O nás</a></li>
+        <li><a href="#gallery" id="fl4">Galerie</a></li>
+        <li><a href="#reviews" id="fl5">Recenze</a></li>
+        <li><a href="https://www.reservio.cz/b/95naillab" target="_blank" id="fl6">Online rezervace &rarr;</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer-heading">Kontakt</div>
+      <div class="footer-heading" id="footerContact">Kontakt</div>
       <ul class="footer-links">
         <li><a href="tel:+420728707436">+420 728 707 436</a></li>
-        <li><a href="https://maps.google.com/?q=Lípová+5,Praha" target="_blank">Lípová 5, Praha</a></li>
+        <li><a href="https://maps.google.com/?q=Lipova+5+Praha" target="_blank">Lípová 5, Praha</a></li>
         <li><a href="https://www.instagram.com/95naillab.cz/" target="_blank">@95naillab.cz</a></li>
         <li><a href="https://www.reservio.cz/b/95naillab" target="_blank">Reservio profil</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bot">
-    <span>© 2026 95 Nail Lab. Všechna práva vyhrazena.</span>
-    <span>Lípová 5, Praha · <a href="tel:+420728707436" style="color:rgba(255,255,255,.4);text-decoration:none">+420 728 707 436</a></span>
+    <span id="copyright">© 2026 95 Nail Lab. Všechna práva vyhrazena.</span>
+    <span>Lípová 5, Praha &middot; <a href="tel:+420728707436" style="color:rgba(255,255,255,.4)">+420 728 707 436</a></span>
   </div>
 </footer>
 
-<!-- BACK TO TOP -->
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
+<!-- CHAT -->
+<button id="cfab" onclick="tChat()">
+  <svg class="fm" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <svg class="fx" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  <span class="cfab-pulse"></span>
+</button>
+<div id="cpanel">
+  <div class="ch-hdr">
+    <div class="ch-ava">N</div>
+    <div>
+      <div class="ch-name">95 Nail Lab Assistant</div>
+      <div class="ch-status"><div class="ch-dot"></div><span id="chStatusTxt">Zde pro vas</span></div>
+    </div>
+  </div>
+  <div class="ch-msgs" id="chM"></div>
+  <div class="ch-qr" id="chQ">
+    <button class="ch-qb" id="qb0">Sluzby</button>
+    <button class="ch-qb" id="qb1">Cenik</button>
+    <button class="ch-qb" id="qb2">Hodiny</button>
+    <button class="ch-qb" id="qb3">Rezervace</button>
+    <button class="ch-qb" id="qb4">Adresa</button>
+  </div>
+  <div class="ch-in-area">
+    <textarea class="ch-in" id="chIn" rows="1"></textarea>
+    <button class="ch-send" id="sBtn" onclick="sM()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+    </button>
+  </div>
+  <div class="ch-note" id="chNote">AI 95naillab.cz Powered by Claude</div>
+</div>
+
 <script>
-// ══ LANGUAGE SYSTEM (unchanged) ══
-var lang = 'cz';
-var LANG_META = {
-  cz: {flag:'🇨🇿', label:'CZ', labelFull:'Čeština'},
-  en: {flag:'🇬🇧', label:'EN', labelFull:'English'}
+// ═══════════════════════════════════════════════════
+// TRANSLATION DATA — all strings in one place
+// ═══════════════════════════════════════════════════
+var T = {
+  cz: {
+    // NAV
+    navServices:'Sluzby', navPricing:'Cenik', navAbout:'O nas', navGallery:'Galerie',
+    navReviews:'Recenze', navContact:'Kontakt', navBook:'Rezervovat',
+    mobServices:'Sluzby', mobPricing:'Cenik', mobAbout:'O nas', mobGallery:'Galerie',
+    mobReviews:'Recenze', mobContact:'Kontakt', mobBook:'Rezervovat online',
+    // LANG DROPDOWN
+    langFlag:'CZ', optCz:'Cestina', optEn:'English',
+    // HERO
+    heroTag:'Nehtové studio Praha',
+    heroH1:'Where nails<br>become <em>art.</em>',
+    heroSub:'Luxusní nehtové studio v srdci Prahy. Profesionální péce, prémiové materiály a výsledky, které podesí. Mluvíme cesky i anglicky.',
+    heroReviews:'108 overených recenzí',
+    heroBtn1:'Rezervovat termín',
+    heroBtn2:'Zobrazit sluzby',
+    heroBadge:'Perfektní hodnocení',
+    // MARQUEE
+    mq1:'Gelové nehty', mq2:'Manikúra', mq3:'Nail Art',
+    mq4:'Francouzská manikúra', mq5:'Nehtové doplnky',
+    mq6:'Praha Lípová 5', mq7:'Otevřeno 7 dní',
+    // SERVICES
+    secServices:'Nabídka',
+    servicesH:'Naše sluzby.',
+    servicesSub:'Každý detail se pocítá. Pracujeme s prémiovými materiály a věnujeme se každé klientce individuálně.',
+    servicesBtn:'Rezervovat',
+    svc1n:'Gelové nehty', svc1d:'Dlouhotrvající gelové nehty ve vaší oblíbené délce a tvaru. Dokonalý výsledek garantován.',
+    svc2n:'Nail Art', svc2d:'Kreativní vzory, třpytky, folie, kamínky. Výtvarné umění na vašich nehtech.',
+    svc3n:'Manikúra', svc3d:'Klasická nebo japonská manikúra s výběrem z pestré palety laků a olejícků.',
+    svc4n:'Francouzská manikúra', svc4d:'Nadcasová elegance. Přirozený vzhled s dokonale bílými špickami pro každou příležitost.',
+    svc5n:'Oprava a Doplnění', svc5d:'Doplnění odrostlých nehtů nebo oprava poškozených. Zachováme váš stávající design.',
+    svc6n:'Prémiový set', svc6d:'Kompletní péce — nové gelové nehty + nail art + masáž rukou + péce o kůzicku.',
+    // PRICING
+    secPricing:'Ceník',
+    pricingH:'Transparentní ceny.',
+    pricingSub:'Žádná překvapení. Přesné ceny vždy dopředu. Záloha není vyžadována.',
+    tabGel:'Gelové nehty', tabMani:'Manikúra', tabArt:'Nail Art', tabExtras:'Doplnky',
+    'p-gel1':'Nová sada — krátké','p-gel2':'Nová sada — střední','p-gel3':'Nová sada — dlouhé',
+    'p-gel4':'Doplnění','p-gel5':'Francouzská manikúra (gel)','p-gel6':'Odstranění gelových nehtů',
+    'p-m1':'Klasická manikúra','p-m2':'Japonská manikúra','p-m3':'Gel lak','p-m4':'Manikúra + gel lak',
+    'p-a1':'Jednoduchý nail art (1 prst)','p-a2':'Nail art (všechny prsty)','p-a3':'Folie a chrom efekty',
+    'p-a4':'3D dekorace a kamínky','p-a5':'Ombré / Baby boomer',
+    'p-e1':'Oprava 1 nehtu','p-e2':'Masáž rukou','p-e3':'Parafínový zábal','p-e4':'Výztuha nehtu (1 prst)',
+    // ABOUT
+    secAbout:'O nás',
+    aboutH:'Vášeň pro detail.',
+    aboutP1:'95 Nail Lab je nehtové studio v Praze na Lípové 5, kde věříme, ze péce o nehty je víc nez jen kosmetický zákrok — je to chvíle jen pro vás.',
+    aboutP2:'Pracujeme výhradně s prémiovými materiály, dbáme na hygienu a nabízíme přátelskou atmosféru. U nás se domluvíte cesky i anglicky.',
+    aboutBadge:'Spokojených klientek',
+    af1:'Prémiové materiály', af2:'Přísná hygiena', af3:'Cesky a anglicky',
+    af4:'Individuální přístup', af5:'Otevřeno 7 dní', af6:'Online rezervace',
+    aboutBtn:'Rezervovat termín',
+    // GALLERY
+    secGallery:'Galerie',
+    galleryH:'Naše práce.',
+    gallerySub:'Každý set je originál. Prohlédněte si naše nejoblíbenější kreace a nechte se inspirovat.',
+    galleryNote:'Nahradte emoji skutecnými fotografiemi vasich prací',
+    // REVIEWS
+    secReviews:'Recenze',
+    reviewsH:'Co říkají klientky.',
+    reviewCount:'108 overených recenzí',
+    rb1:'Perfektní', rb2:'Skvělé', rb3:'Dobré', rb4:'Horší', rb5:'Hrozné',
+    readReviews:'Císt všechny recenze',
+    rev1:'Skvělý salón, navštěvuji ho jiz rok a nikdy jsem neodcházela nespokojená. Vždy perfektní výsledek!',
+    rev2:'Slecna je skvělá a nehty vzdy podle představ. Profesionální přístup a příjemná atmosféra. Doporucuji!',
+    rev3:'Vše bylo skvěle, slecna byla velmi šikovná. Precizní nehty za dobrou cenu. Těsím se na příště!',
+    // BOOKING
+    bookingTitle:'Rezervujte svůj termín.',
+    bookingSub:'Jednoduchá online rezervace za méně nez 2 minuty. Bez zálohy, bez stresu.',
+    bf1:'Rezervace online 24/7', bf2:'Potvrzení emailem okamžitě',
+    bf3:'Bezplatné zrušení 24h předem', bf4:'Žádná záloha', bf5:'Připomínka před termínem',
+    openBooking:'Otevřít rezervaci',
+    formTitle:'Rychlá poptávka',
+    labelName:'Jméno', labelPhone:'Telefon', labelService:'Sluzba',
+    labelDate:'Preferovaný termín', labelNote:'Poznámka',
+    submitBtn:'Odeslat poptávku',
+    orBook:'Nebo rezervujte přes',
+    formAlert:'Vyplnte prosím jméno a telefon.',
+    // CONTACT
+    secContact:'Kontakt',
+    contactH:'Najdete nás v Praze.',
+    hoursTitle:'Otevírací hodiny',
+    hd1:'Pondělí – Pátek', hd2:'Sobota', hd3:'Neděle',
+    contactTitle:'Kontaktní údaje',
+    onlineBooking:'Online rezervace',
+    // FOOTER
+    footerTagline:'Luxusní nehtové studio v srdci Prahy.<br>Lípová 5 · Otevřeno 7 dní v týdnu.<br>Cesky & English spoken.',
+    footerLinks:'Rychlé odkazy', footerContact:'Kontakt',
+    fl1:'Naše sluzby', fl2:'Ceník', fl3:'O nás', fl4:'Galerie', fl5:'Recenze', fl6:'Online rezervace',
+    copyright:'© 2026 95 Nail Lab. Všechna práva vyhrazena.',
+    // CHAT
+    chatStatus:'Zde pro vás',
+    chatPlaceholder:'Zeptejte se na sluzby, ceny, rezervaci...',
+    chatGreeting:'Ahoj! Jsem asistentka 95 Nail Lab. Zeptejte se na sluzby, ceny, rezervaci nebo oteviraci dobu!',
+    chatErr:'Nepodařilo se připojit. Zavolejte +420 728 707 436.',
+    qb0:'Sluzby', qb1:'Ceník', qb2:'Hodiny', qb3:'Rezervace', qb4:'Adresa',
+    qt0:'Jaké sluzby nabízíte?', qt1:'Jaké jsou ceny?', qt2:'Jaká je otevirací doba?',
+    qt3:'Jak si rezervovat termín?', qt4:'Kde se nacházíte?'
+  },
+  en: {
+    navServices:'Services', navPricing:'Pricing', navAbout:'About', navGallery:'Gallery',
+    navReviews:'Reviews', navContact:'Contact', navBook:'Book now',
+    mobServices:'Services', mobPricing:'Pricing', mobAbout:'About', mobGallery:'Gallery',
+    mobReviews:'Reviews', mobContact:'Contact', mobBook:'Book online',
+    langFlag:'EN', optCz:'Cestina', optEn:'English',
+    heroTag:'Nail Studio Prague',
+    heroH1:'Where nails<br>become <em>art.</em>',
+    heroSub:'A luxury nail studio in the heart of Prague. Professional care, premium materials, results that delight. We speak Czech and English.',
+    heroReviews:'108 verified reviews',
+    heroBtn1:'Book appointment',
+    heroBtn2:'View services',
+    heroBadge:'Perfect rating',
+    mq1:'Gel Nails', mq2:'Manicure', mq3:'Nail Art',
+    mq4:'French Manicure', mq5:'Nail Extras',
+    mq6:'Prague Lipova 5', mq7:'Open 7 days',
+    secServices:'Services',
+    servicesH:'Our services.',
+    servicesSub:'Every detail counts. We use premium materials and give each client our full individual attention.',
+    servicesBtn:'Book now',
+    svc1n:'Gel Nails', svc1d:'Long-lasting gel nails in your favourite length and shape. Perfect results guaranteed.',
+    svc2n:'Nail Art', svc2d:'Creative patterns, glitter, foils, rhinestones. Art on your fingertips.',
+    svc3n:'Manicure', svc3d:'Classic or Japanese manicure with a wide selection of polishes and oils.',
+    svc4n:'French Manicure', svc4d:'Timeless elegance. Natural look with perfectly white tips for any occasion.',
+    svc5n:'Repair and Infill', svc5d:'Infill of grown-out nails or repair of damaged ones. We keep your existing design.',
+    svc6n:'Premium Set', svc6d:'Complete care — new gel nails + nail art + hand massage + cuticle care.',
+    secPricing:'Pricing',
+    pricingH:'Transparent pricing.',
+    pricingSub:'No surprises. Exact prices upfront. No deposit required.',
+    tabGel:'Gel Nails', tabMani:'Manicure', tabArt:'Nail Art', tabExtras:'Extras',
+    'p-gel1':'New set — short','p-gel2':'New set — medium','p-gel3':'New set — long',
+    'p-gel4':'Infill','p-gel5':'French manicure (gel)','p-gel6':'Gel removal',
+    'p-m1':'Classic manicure','p-m2':'Japanese manicure','p-m3':'Gel polish','p-m4':'Manicure + gel polish',
+    'p-a1':'Simple nail art (1 finger)','p-a2':'Nail art (all fingers)','p-a3':'Foil and chrome effects',
+    'p-a4':'3D decorations and rhinestones','p-a5':'Ombre / Baby boomer',
+    'p-e1':'Single nail repair','p-e2':'Hand massage','p-e3':'Paraffin wrap','p-e4':'Nail reinforcement (1 finger)',
+    secAbout:'About us',
+    aboutH:'A passion for detail.',
+    aboutP1:'95 Nail Lab is a nail studio in Prague at Lipova 5, where we believe nail care is more than just a cosmetic procedure — it is a moment just for you.',
+    aboutP2:'We use only premium materials, maintain strict hygiene standards and offer a friendly atmosphere. We speak both Czech and English.',
+    aboutBadge:'Happy clients',
+    af1:'Premium materials', af2:'Strict hygiene', af3:'Czech and English',
+    af4:'Individual approach', af5:'Open 7 days', af6:'Online booking',
+    aboutBtn:'Book appointment',
+    secGallery:'Gallery',
+    galleryH:'Our work.',
+    gallerySub:'Every set is original. Browse our most popular creations and get inspired.',
+    galleryNote:'Replace emoji with real photos of your work',
+    secReviews:'Reviews',
+    reviewsH:'What our clients say.',
+    reviewCount:'108 verified reviews',
+    rb1:'Perfect', rb2:'Great', rb3:'Good', rb4:'Below average', rb5:'Poor',
+    readReviews:'Read all reviews',
+    rev1:'Great salon, I have been visiting for a year and never left disappointed. Always perfect results!',
+    rev2:'She is wonderful and nails always as requested. Professional approach and pleasant atmosphere. Highly recommend!',
+    rev3:'Everything was great, she was very skilled. Precise nails at a good price. Looking forward to next time!',
+    bookingTitle:'Book your appointment.',
+    bookingSub:'Easy online booking in under 2 minutes. No deposit, no stress.',
+    bf1:'Online booking 24/7', bf2:'Instant email confirmation',
+    bf3:'Free cancellation 24h before', bf4:'No deposit required', bf5:'Reminder before appointment',
+    openBooking:'Open booking',
+    formTitle:'Quick inquiry',
+    labelName:'Name', labelPhone:'Phone', labelService:'Service',
+    labelDate:'Preferred date', labelNote:'Note',
+    submitBtn:'Send inquiry',
+    orBook:'Or book directly via',
+    formAlert:'Please fill in your name and phone.',
+    secContact:'Contact',
+    contactH:'Find us in Prague.',
+    hoursTitle:'Opening hours',
+    hd1:'Monday – Friday', hd2:'Saturday', hd3:'Sunday',
+    contactTitle:'Contact details',
+    onlineBooking:'Online booking',
+    footerTagline:'Luxury nail studio in the heart of Prague.<br>Lipova 5 · Open 7 days a week.<br>Czech and English spoken.',
+    footerLinks:'Quick links', footerContact:'Contact',
+    fl1:'Our services', fl2:'Pricing', fl3:'About us', fl4:'Gallery', fl5:'Reviews', fl6:'Online booking',
+    copyright:'© 2026 95 Nail Lab. All rights reserved.',
+    chatStatus:'Here to help you',
+    chatPlaceholder:'Ask about services, prices, booking...',
+    chatGreeting:'Hi! I am the 95 Nail Lab assistant. Ask me about services, pricing, booking or opening hours!',
+    chatErr:'Could not connect. Please call +420 728 707 436.',
+    qb0:'Services', qb1:'Pricing', qb2:'Hours', qb3:'Booking', qb4:'Location',
+    qt0:'What services do you offer?', qt1:'What are the prices?', qt2:'What are the opening hours?',
+    qt3:'How do I book an appointment?', qt4:'Where are you located?'
+  }
 };
+
+// ═══════════════════════════════════════════════════
+// LANGUAGE SYSTEM
+// ═══════════════════════════════════════════════════
+var lang = 'cz';
+
+function t(key) { return (T[lang] && T[lang][key]) ? T[lang][key] : (T.cz[key] || ''); }
+
+function setEl(id, val, isHTML) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  if (isHTML) { el.innerHTML = val; } else { el.textContent = val; }
+}
+
+function applyLang() {
+  // Dropdown indicators
+  setEl('langFlag', t('langFlag'));
+  setEl('langFlagMob', t('langFlag'));
+  document.querySelectorAll('.lang-opt').forEach(function(b) {
+    if (b.id === 'opt-cz' || b.id === 'mob-opt-cz') b.textContent = t('optCz');
+    if (b.id === 'opt-en' || b.id === 'mob-opt-en') b.textContent = t('optEn');
+    b.classList.toggle('active-opt', (lang === 'cz' && (b.id === 'opt-cz' || b.id === 'mob-opt-cz')) || (lang === 'en' && (b.id === 'opt-en' || b.id === 'mob-opt-en')));
+  });
+  // NAV
+  setEl('mob-services', t('mobServices'));
+  setEl('mob-pricing', t('mobPricing'));
+  setEl('mob-about', t('mobAbout'));
+  setEl('mob-gallery', t('mobGallery'));
+  setEl('mob-reviews', t('mobReviews'));
+  setEl('mob-contact', t('mobContact'));
+  setEl('mobBook', t('mobBook'));
+  setEl('navBook', t('navBook'));
+  // Nav links (ID-based, not index-based)
+  setEl('nav-services', t('navServices'));
+  setEl('nav-pricing', t('navPricing'));
+  setEl('nav-about', t('navAbout'));
+  setEl('nav-gallery', t('navGallery'));
+  setEl('nav-reviews', t('navReviews'));
+  setEl('nav-contact', t('navContact'));
+  // HERO
+  setEl('heroTag', t('heroTag'));
+  setEl('heroH1', t('heroH1'), true);
+  setEl('heroSub', t('heroSub'));
+  setEl('heroReviews', t('heroReviews'));
+  setEl('heroBtn1', t('heroBtn1'));
+  setEl('heroBtn2', t('heroBtn2'));
+  setEl('heroBadge', t('heroBadge'));
+  // MARQUEE - update first 7 items
+  for (var i = 1; i <= 7; i++) { setEl('mq' + i, t('mq' + i)); }
+  // SERVICES
+  setEl('secServices', t('secServices'));
+  setEl('servicesH', t('servicesH'));
+  setEl('servicesSub', t('servicesSub'));
+  setEl('servicesBtn', t('servicesBtn'));
+  ['svc1n','svc1d','svc2n','svc2d','svc3n','svc3d','svc4n','svc4d','svc5n','svc5d','svc6n','svc6d'].forEach(function(k){ setEl(k, t(k)); });
+  // PRICING
+  setEl('secPricing', t('secPricing'));
+  setEl('pricingH', t('pricingH'));
+  setEl('pricingSub', t('pricingSub'));
+  setEl('tab-btn-gel', t('tabGel'));
+  setEl('tab-btn-mani', t('tabMani'));
+  setEl('tab-btn-art', t('tabArt'));
+  setEl('tab-btn-extras', t('tabExtras'));
+  var priceIds = ['p-gel1','p-gel2','p-gel3','p-gel4','p-gel5','p-gel6','p-m1','p-m2','p-m3','p-m4','p-a1','p-a2','p-a3','p-a4','p-a5','p-e1','p-e2','p-e3','p-e4'];
+  priceIds.forEach(function(k){ setEl(k, t(k)); });
+  // ABOUT
+  setEl('secAbout', t('secAbout'));
+  setEl('aboutH', t('aboutH'));
+  setEl('aboutP1', t('aboutP1'));
+  setEl('aboutP2', t('aboutP2'));
+  setEl('aboutBadge', t('aboutBadge'));
+  ['af1','af2','af3','af4','af5','af6'].forEach(function(k){ setEl(k, t(k)); });
+  setEl('aboutBtn', t('aboutBtn'));
+  // GALLERY
+  setEl('secGallery', t('secGallery'));
+  setEl('galleryH', t('galleryH'));
+  setEl('gallerySub', t('gallerySub'));
+  setEl('galleryNote', t('galleryNote'));
+  // REVIEWS
+  setEl('secReviews', t('secReviews'));
+  setEl('reviewsH', t('reviewsH'));
+  setEl('reviewCount', t('reviewCount'));
+  ['rb1','rb2','rb3','rb4','rb5'].forEach(function(k){ setEl(k, t(k)); });
+  setEl('readReviews', t('readReviews'));
+  ['rev1','rev2','rev3'].forEach(function(k){ setEl(k, t(k)); });
+  // BOOKING
+  setEl('bookingTitle', t('bookingTitle'));
+  setEl('bookingSub', t('bookingSub'));
+  ['bf1','bf2','bf3','bf4','bf5'].forEach(function(k){ setEl(k, t(k)); });
+  setEl('openBooking', t('openBooking'));
+  setEl('formTitle', t('formTitle'));
+  setEl('labelName', t('labelName'));
+  setEl('labelPhone', t('labelPhone'));
+  setEl('labelService', t('labelService'));
+  setEl('labelDate', t('labelDate'));
+  setEl('labelNote', t('labelNote'));
+  setEl('submitBtn', t('submitBtn'));
+  setEl('orBook', t('orBook'));
+  // Update service dropdown
+  var svcOpts = lang === 'en'
+    ? ['Select a service','Gel nails — new set','Infill','Manicure','Nail art','French manicure','Premium set']
+    : ['Vyberte sluzbu','Gelové nehty — nová sada','Doplnení','Manikúra','Nail art','Francouzská manikúra','Prémiový set'];
+  var sel = document.getElementById('cfService');
+  if (sel) { sel.innerHTML = ''; svcOpts.forEach(function(o){ var op=document.createElement('option'); op.textContent=o; sel.appendChild(op); }); }
+  // CONTACT
+  setEl('secContact', t('secContact'));
+  setEl('contactH', t('contactH'));
+  setEl('hoursTitle', t('hoursTitle'));
+  setEl('hd1', t('hd1')); setEl('hd2', t('hd2')); setEl('hd3', t('hd3'));
+  setEl('contactTitle', t('contactTitle'));
+  setEl('onlineBooking', t('onlineBooking'));
+  // FOOTER
+  setEl('footerTagline', t('footerTagline'), true);
+  setEl('footerLinks', t('footerLinks'));
+  setEl('footerContact', t('footerContact'));
+  ['fl1','fl2','fl3','fl4','fl5','fl6'].forEach(function(k){ setEl(k, t(k)); });
+  setEl('copyright', t('copyright'));
+  // CHAT
+  setEl('chStatusTxt', t('chatStatus'));
+  setEl('chNote', 'AI 95naillab.cz Powered by Claude');
+  var inp = document.getElementById('chIn');
+  if (inp) inp.placeholder = t('chatPlaceholder');
+  for (var qi = 0; qi <= 4; qi++) {
+    var qb = document.getElementById('qb' + qi);
+    if (qb) {
+      qb.textContent = t('qb' + qi);
+      (function(idx){ qb.onclick = function(){ qS(t('qt' + idx)); }; })(qi);
+    }
+  }
+  // html lang attr
+  document.documentElement.lang = lang === 'cz' ? 'cs' : 'en';
+}
 
 function setLang(l) {
   lang = l;
-  document.documentElement.lang = l === 'cz' ? 'cs' : 'en';
-  var m = LANG_META[l] || LANG_META.cz;
-  var f = document.getElementById('langFlag');
-  var lb = document.getElementById('langLabel');
-  var fm = document.getElementById('langFlagMob');
-  var lm = document.getElementById('langLabelMob');
-  if (f) f.textContent = m.flag;
-  if (lb) lb.textContent = m.label;
-  if (fm) fm.textContent = m.flag;
-  if (lm) lm.textContent = m.labelFull;
-  document.querySelectorAll('.lang-opt').forEach(function(b) {
-    b.classList.toggle('active-opt', b.textContent.indexOf(m.labelFull) >= 0);
-  });
-  document.querySelectorAll('[data-cz]').forEach(function(el) {
-    var val = el.getAttribute('data-' + l) || el.getAttribute('data-cz');
-    if (val) el.textContent = val;
-  });
-  var ptabLabels = {
-    cz: ['Gelové nehty','Manikúra','Nail Art','Doplňky'],
-    en: ['Gel Nails','Manicure','Nail Art','Extras']
-  };
-  document.querySelectorAll('.ptab').forEach(function(t, i) {
-    if (ptabLabels[l] && ptabLabels[l][i]) t.textContent = ptabLabels[l][i];
-  });
-  var inp = document.getElementById('chIn');
-  if (inp) inp.placeholder = l === 'en' ? 'Ask about services, prices, booking…' : 'Zeptejte se na služby, ceny, rezervaci…';
-  var st = document.getElementById('chStatusTxt');
-  if (st) st.textContent = l === 'en' ? 'Here to help you' : 'Zde pro vás';
-  var qL = {
-    cz: ['💅 Služby','💰 Ceník','🕐 Hodiny','📅 Rezervace','📍 Adresa'],
-    en: ['💅 Services','💰 Pricing','🕐 Hours','📅 Booking','📍 Location']
-  };
-  var qT = {
-    cz: ['Jaké služby nabízíte?','Jaké jsou ceny?','Jaká je otevírací doba?','Jak si rezervovat termín?','Kde se nacházíte?'],
-    en: ['What services do you offer?','What are the prices?','What are the opening hours?','How do I book an appointment?','Where are you located?']
-  };
-  document.querySelectorAll('.ch-qb').forEach(function(b, i) {
-    if (qL[l] && qL[l][i]) {
-      b.textContent = qL[l][i];
-      (function(idx){ b.onclick = function(){ qS(qT[l][idx]); }; })(i);
-    }
-  });
-  var svcOpts = {
-    cz: ['Vyberte službu','Gelové nehty — nová sada','Doplnění','Manikúra','Nail art','Francouzská manikúra','Prémiový set'],
-    en: ['Select a service','Gel nails — new set','Infill','Manicure','Nail art','French manicure','Premium set']
-  };
-  var sel = document.querySelector('.form-select');
-  if (sel) {
-    sel.innerHTML = '';
-    svcOpts[l].forEach(function(o) {
-      var op = document.createElement('option');
-      op.textContent = o;
-      sel.appendChild(op);
-    });
-  }
-  window._formAlert = l === 'en' ? 'Please fill in your name and phone.' : 'Vyplňte prosím jméno a telefon.';
+  // Close dropdown
+  document.getElementById('langDrop').classList.remove('open');
+  document.getElementById('langDropMob').classList.remove('open');
+  applyLang();
 }
 
-function toggleLangDrop(e, suffix) {
-  if (e) e.stopPropagation();
-  var id = 'langDrop' + (suffix === 'mob' ? 'Mob' : '');
-  var drop = document.getElementById(id);
-  if (drop) drop.classList.toggle('open');
-}
-document.addEventListener('click', function() {
-  document.querySelectorAll('.lang-drop.open').forEach(function(d) { d.classList.remove('open'); });
+// Lang dropdown toggle
+document.getElementById('langCurrBtn').onclick = function(e) {
+  e.stopPropagation();
+  document.getElementById('langDrop').classList.toggle('open');
+};
+document.getElementById('langCurrMob').onclick = function(e) {
+  e.stopPropagation();
+  document.getElementById('langDropMob').classList.toggle('open');
+};
+document.getElementById('opt-cz').onclick = function(){ setLang('cz'); };
+document.getElementById('opt-en').onclick = function(){ setLang('en'); };
+document.getElementById('mob-opt-cz').onclick = function(){ setLang('cz'); closeMob(); };
+document.getElementById('mob-opt-en').onclick = function(){ setLang('en'); closeMob(); };
+document.addEventListener('click', function(){
+  document.getElementById('langDrop').classList.remove('open');
+  document.getElementById('langDropMob').classList.remove('open');
 });
-(function() {
-  var bl = (navigator.language || 'cs').toLowerCase().slice(0, 2);
-  setLang(bl === 'cs' || bl === 'sk' ? 'cz' : 'en');
+
+// Auto-detect language — actual DOM update happens in DOMContentLoaded
+(function(){
+  var bl = (navigator.language || 'cs').toLowerCase().slice(0,2);
+  lang = (bl === 'cs' || bl === 'sk') ? 'cz' : 'en';
 })();
 
-window.addEventListener('scroll', function() {
+// ═══════════════════════════════════════════════════
+// NAV + MOBILE
+// ═══════════════════════════════════════════════════
+window.addEventListener('scroll', function(){
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
   var btt = document.getElementById('btt');
   if (btt) btt.classList.toggle('show', window.scrollY > 400);
 });
-function toggleMob() { document.getElementById('mobMenu').classList.toggle('open'); }
-function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
-function showTab(btn, id) {
-  document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('active'); });
-  document.querySelectorAll('.price-panel').forEach(function(p) { p.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-var obs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('v'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.rv').forEach(function(el) { obs.observe(el); });
-function submitInquiry() {
-  var name = document.querySelector('.booking-form-card input[type=text]');
-  var phone = document.querySelector('.booking-form-card input[type=tel]');
-  name = name ? name.value.trim() : '';
-  phone = phone ? phone.value.trim() : '';
-  if (!name || !phone) { alert(window._formAlert || 'Please fill in all fields.'); return; }
-  var service = document.querySelector('.form-select');
-  service = service ? service.value : '';
-  var note = document.querySelector('.form-textarea');
-  note = note ? note.value : '';
-  var subj = lang === 'en' ? 'Appointment inquiry from ' + name : 'Poptavka terminu od ' + name;
-  var body = 'Name: ' + name + '%0APhone: ' + phone + '%0AService: ' + service + '%0ANote: ' + note;
-  window.location.href = 'mailto:info@95naillab.cz?subject=' + encodeURIComponent(subj) + '&body=' + body;
-}
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+function toggleMob(){ document.getElementById('mobMenu').classList.toggle('open'); }
+function closeMob(){ document.getElementById('mobMenu').classList.remove('open'); }
+document.getElementById('navHam').onclick = toggleMob;
+
+// Mobile anchor links close menu
+document.querySelectorAll('.mob-menu a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(){ closeMob(); });
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
 });
 
-// ══ CHAT (FIXED) ══
+// ═══════════════════════════════════════════════════
+// PRICING TABS
+// ═══════════════════════════════════════════════════
+function showTab(btn, id) {
+  document.querySelectorAll('.ptab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.price-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════════
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.rv').forEach(function(el){ obs.observe(el); });
+
+// ═══════════════════════════════════════════════════
+// CONTACT FORM
+// ═══════════════════════════════════════════════════
+function submitInquiry() {
+  var name = document.getElementById('cfName');
+  var phone = document.getElementById('cfPhone');
+  var nameVal = name ? name.value.trim() : '';
+  var phoneVal = phone ? phone.value.trim() : '';
+  if (!nameVal || !phoneVal) { alert(t('formAlert')); return; }
+  var service = document.getElementById('cfService');
+  var note = document.getElementById('cfNote');
+  var serviceVal = service ? service.value : '';
+  var noteVal = note ? note.value : '';
+  var subj = lang === 'en' ? 'Appointment inquiry from ' + nameVal : 'Poptavka terminu od ' + nameVal;
+  var body = 'Name: ' + nameVal + '%0APhone: ' + phoneVal + '%0AService: ' + serviceVal + '%0ANote: ' + noteVal;
+  window.location.href = 'mailto:info@95naillab.cz?subject=' + encodeURIComponent(subj) + '&body=' + body;
+}
+
+// ═══════════════════════════════════════════════════
+// CHAT
+// ═══════════════════════════════════════════════════
 var cOpen = false, ld = false;
 var H = [];
-var SYS = 'You are the warm friendly assistant for 95 Nail Lab, a premium nail salon at Lipova 5, Prague. You ONLY help with these topics:\n'
-  + '1. SERVICES & PRICING:\n'
-  + '   Gel Nails: short 800 CZK (90min), medium 900 CZK, long 1000 CZK\n'
-  + '   Infill: 600 CZK (75min). French Manicure gel: 950 CZK (90min). Gel removal: 250 CZK.\n'
-  + '   Classic Manicure: 450 CZK (45min). Japanese Manicure: 550 CZK (60min).\n'
-  + '   Gel polish: 500 CZK. Manicure + gel polish: 700 CZK (75min).\n'
-  + '   Nail Art: from 200 CZK. Chrome/foil: 150 CZK. 3D/rhinestones: from 100 CZK. Ombre: 200 CZK.\n'
-  + '   Hand massage: 150 CZK. Paraffin wrap: 200 CZK. Single nail repair: 80 CZK.\n'
-  + '   Premium Set (gel nails + art + hand massage): 1200 CZK (120min).\n'
-  + '2. BOOKING: Online at reservio.cz/b/95naillab. No deposit. Free cancellation 24h before.\n'
-  + '3. OPENING HOURS: Mon-Fri 9:00-20:00. Sat 9:00-19:00. Sun 10:00-19:00. Open 7 days.\n'
-  + '4. LOCATION & CONTACT: Lipova 5, Prague. Phone: +420 728 707 436. Instagram: @95naillab.cz. Czech & English spoken.\n'
-  + '5. UPSELL: Suggest nail art or hand massage when asked about gel nails. Suggest Premium Set for full experience.\n'
-  + 'STRICT RULES:\n'
-  + '- ONLY answer the above topics. For anything else say: "I can only help with services, booking, hours and location. Call +420 728 707 436!"\n'
-  + '- Reply in the language the customer uses (Czech or English).\n'
-  + '- Be warm, brief, 1-2 emojis. Max 3-4 sentences unless listing items.\n'
-  + '- Never invent prices or services not listed.';
+var SYS = 'You are the warm friendly assistant for 95 Nail Lab, a premium nail salon at Lipova 5, Prague. You ONLY help with:\n'
+  + '1. SERVICES & PRICING: Gel Nails short 800 CZK (90min), medium 900, long 1000. Infill 600 (75min). French gel 950. Gel removal 250. Classic manicure 450 (45min). Japanese 550 (60min). Gel polish 500. Manicure+gel 700 (75min). Nail art from 200. Chrome/foil 150. 3D from 100. Ombre 200. Hand massage 150. Paraffin 200. Single nail repair 80. Premium Set (gel+art+massage) 1200 (120min).\n'
+  + '2. BOOKING: Online at reservio.cz/b/95naillab. No deposit. Free cancellation 24h before. Instant email confirmation.\n'
+  + '3. HOURS: Mon-Fri 9:00-20:00. Sat 9:00-19:00. Sun 10:00-19:00. Open every day.\n'
+  + '4. LOCATION: Lipova 5, Prague. Phone +420 728 707 436. Instagram @95naillab.cz. Czech and English spoken.\n'
+  + '5. UPSELL: Suggest nail art or hand massage with gel nails. Suggest Premium Set for full experience.\n'
+  + 'RULES: Only answer the above topics. For anything else say you can only help with services, booking, hours and location and give the phone number. Reply in the language the customer uses. Be warm and brief with 1-2 emojis. Never invent prices.';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function(){
+  // Apply language to all elements now that DOM is ready
+  applyLang();
   var inp = document.getElementById('chIn');
   if (inp) {
-    inp.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sM(); }
+    inp.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sM(); }
     });
-    inp.addEventListener('input', function() {
+    inp.addEventListener('input', function(){
       inp.style.height = 'auto';
       inp.style.height = Math.min(inp.scrollHeight, 72) + 'px';
     });
   }
-  setTimeout(function() {
-    var msg = lang === 'en'
-      ? 'Hi! I am the 95 Nail Lab assistant. Ask me about services, pricing, booking or hours!'
-      : 'Ahoj! Jsem asistentka 95 Nail Lab. Zeptejte se na služby, ceny, rezervaci nebo otevírací dobu!';
-    addM('assistant', msg);
+  setTimeout(function(){
+    addM('assistant', t('chatGreeting'));
   }, 600);
+  // applyLang already called by auto-detect IIFE — no duplicate needed
 });
 
 function tChat() {
@@ -862,27 +1139,22 @@ function tChat() {
   if (cOpen) {
     var pulse = document.querySelector('.cfab-pulse');
     if (pulse) pulse.remove();
-    setTimeout(function() {
-      var inp = document.getElementById('chIn');
-      if (inp) inp.focus();
-    }, 200);
+    setTimeout(function(){ var inp=document.getElementById('chIn'); if(inp) inp.focus(); }, 200);
   }
 }
 
-// ----- FIXED addM function (no syntax error) -----
 function addM(role, text) {
   var c = document.getElementById('chM');
   if (!c) return;
-  var time = new Date().toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' });
+  var time = new Date().toLocaleTimeString('cs-CZ', {hour:'2-digit', minute:'2-digit'});
   var div = document.createElement('div');
   div.className = 'cm ' + role;
-  // Escape HTML and convert newlines to <br>
-  var safe = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
-  div.innerHTML = '<div class="cm-a">' + (role === 'user' ? '👤' : 'N') + '</div>'
-    + '<div><div class="cm-b">' + safe + '</div>'
-    + '<div class="cm-t">' + time + '</div></div>';
+  // Safe HTML escape without regex
+  var safe = text.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;').split('\n').join('<br>');
+  div.innerHTML = '<div class="cm-a">' + (role === 'user' ? 'U' : 'N') + '</div>'
+    + '<div><div class="cm-b">' + safe + '</div><div class="cm-t">' + time + '</div></div>';
   c.appendChild(div);
-  setTimeout(function() { c.scrollTop = c.scrollHeight; }, 30);
+  setTimeout(function(){ c.scrollTop = c.scrollHeight; }, 30);
   if (role === 'user') {
     var q = document.getElementById('chQ');
     if (q) q.style.display = 'none';
@@ -893,18 +1165,16 @@ var typer = null;
 function showTyping() {
   var c = document.getElementById('chM');
   if (!c) return;
-  if (typer) { typer.remove(); typer = null; }
+  if (typer){ typer.remove(); typer = null; }
   var d = document.createElement('div');
   d.className = 'cm assistant';
-  d.id = 'typer';
   d.innerHTML = '<div class="cm-a">N</div><div class="ch-typing"><div class="td"></div><div class="td"></div><div class="td"></div></div>';
   c.appendChild(d);
-  setTimeout(function() { c.scrollTop = c.scrollHeight; }, 30);
+  setTimeout(function(){ c.scrollTop = c.scrollHeight; }, 30);
   typer = d;
 }
-function hideTyping() { if (typer) { typer.remove(); typer = null; } }
+function hideTyping() { if (typer){ typer.remove(); typer = null; } }
 
-// ══ AI CHAT – calls /api/chat (backend needed) ══
 async function sM() {
   var inp = document.getElementById('chIn');
   if (!inp) return;
@@ -916,73 +1186,36 @@ async function sM() {
   var btn = document.getElementById('sBtn');
   if (btn) btn.disabled = true;
   addM('user', text);
-  H.push({ role: 'user', content: text });
+  H.push({role:'user', content:text});
   showTyping();
   try {
-    // If you have deployed the backend API, this will work.
-    // For local testing without backend, you can replace fetch with a mock (see commented mock below).
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ system: SYS, messages: H })
+    var res = await fetch('/api/chat', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({system: SYS, messages: H})
     });
     hideTyping();
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    // Our backend returns { reply: "..." } or { content: [...] } depending on implementation.
-    // The clinic example returns { reply }. Adapt as needed.
-    const reply = data.reply || (data.content && data.content[0] && data.content[0].text) || 'Sorry, I could not process that.';
-    H.push({ role: 'assistant', content: reply });
-    addM('assistant', reply);
-  } catch (err) {
+    var data = await res.json();
+    if (!res.ok) {
+      addM('assistant', 'Error: ' + (data.error || res.status));
+    } else {
+      var reply = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : '?';
+      H.push({role:'assistant', content:reply});
+      addM('assistant', reply);
+    }
+  } catch(e) {
     hideTyping();
-    console.error('Chat error:', err);
-    var errMsg = lang === 'en'
-      ? 'Could not connect. Please call +420 728 707 436.'
-      : 'Nepodařilo se připojit. Zavolejte +420 728 707 436.';
-    addM('assistant', errMsg);
+    addM('assistant', t('chatErr'));
   }
   ld = false;
   if (btn) btn.disabled = false;
-  inp.focus();
+  if (inp) inp.focus();
 }
 
 function qS(text) {
   var inp = document.getElementById('chIn');
-  if (inp) { inp.value = text; sM(); }
+  if (inp){ inp.value = text; sM(); }
 }
 </script>
-
-<!-- CHAT FAB + PANEL (unchanged) -->
-<button id="cfab" onclick="tChat()" aria-label="Chat">
-  <svg class="fm" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-  <svg class="fx" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-  <span class="cfab-pulse"></span>
-</button>
-<div id="cpanel">
-  <div class="ch-hdr">
-    <div class="ch-ava">N</div>
-    <div>
-      <div class="ch-name">95 Nail Lab Assistant</div>
-      <div class="ch-status"><div class="ch-dot"></div><span id="chStatusTxt">Here to help you</span></div>
-    </div>
-  </div>
-  <div class="ch-msgs" id="chM"></div>
-  <div class="ch-qr" id="chQ">
-    <button class="ch-qb">💅 Services</button>
-    <button class="ch-qb">💰 Pricing</button>
-    <button class="ch-qb">🕐 Hours</button>
-    <button class="ch-qb">📅 Booking</button>
-    <button class="ch-qb">📍 Location</button>
-  </div>
-  <div class="ch-in-area">
-    <textarea class="ch-in" id="chIn" placeholder="Ask about services, prices, booking…" rows="1"></textarea>
-    <button class="ch-send" id="sBtn" onclick="sM()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
-    </button>
-  </div>
-  <div class="ch-note" id="chNote">AI · 95naillab.cz · Powered by Claude</div>
-</div>
-
 </body>
 </html>

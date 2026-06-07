@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   if (!API_KEY) {
     console.error('Missing ANTHROPIC_API_KEY_Clinic');
-    return res.status(500).json({ error: 'Missing API key. Please set ANTHROPIC_API_KEY_Clinic in Vercel.' });
+    return res.status(500).json({ error: 'Missing API key' });
   }
 
   try {
@@ -17,10 +17,10 @@ export default async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': API_KEY,
-        'anthropic-version': '2023-06-01'
+        'anthropic-version': '2023-06-01'   // REQUIRED header
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',
+        model: 'claude-3-haiku-20240307',    // valid model name
         max_tokens: 500,
         system: system,
         messages: messages
@@ -30,17 +30,15 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      // Log the full error to Vercel function logs
       console.error('Anthropic error details:', data);
-      // Return a helpful message to the frontend
-      const errorMsg = data.error?.message || `HTTP ${response.status}`;
-      return res.status(response.status).json({ error: `Anthropic error: ${errorMsg}` });
+      // Return a more specific error to the frontend
+      return res.status(response.status).json({ error: data.error?.message || 'AI service error' });
     }
 
     const reply = data.content[0].text;
     res.status(200).json({ content: [{ text: reply }] });
   } catch (error) {
     console.error('API error:', error);
-    res.status(500).json({ error: `Internal server error: ${error.message}` });
+    res.status(500).json({ error: 'Internal server error' });
   }
 }

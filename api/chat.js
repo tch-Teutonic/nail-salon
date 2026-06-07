@@ -1,14 +1,24 @@
+// api/chat.js
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  const { messages, system } = req.body;
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  // Use the exact name of your environment variable
   const API_KEY = process.env.ANTHROPIC_API_KEY_Clinic;
 
   if (!API_KEY) {
-    console.error('Missing ANTHROPIC_API_KEY_Clinic');
-    return res.status(500).json({ error: 'Missing API key' });
+    console.error('ANTHROPIC_API_KEY_Clinic not set');
+    return res.status(500).json({ error: 'ANTHROPIC_API_KEY_Clinic not set in environment' });
+  }
+
+  const { messages, system } = req.body || {};
+
+  if (!messages || !Array.isArray(messages) || messages.length === 0) {
+    return res.status(400).json({ error: 'messages array is required' });
   }
 
   try {
@@ -17,28 +27,25 @@ export default async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': API_KEY,
-        'anthropic-version': '2023-06-01'   // REQUIRED header
+        'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-3-haiku-20240307',    // valid model name
-        max_tokens: 500,
-        system: system,
-        messages: messages
-      })
+        model: 'claude-3-haiku-20240307', // valid model name
+        max_tokens: 1024,
+        system: system || '',
+        messages: messages,
+      }),
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Anthropic error details:', data);
-      // Return a more specific error to the frontend
-      return res.status(response.status).json({ error: data.error?.message || 'AI service error' });
+      const errDetail = data?.error?.message || JSON.stringify(data);
+      return res.status(response.status).json({ error: errDetail });
     }
 
-    const reply = data.content[0].text;
-    res.status(200).json({ content: [{ text: reply }] });
-  } catch (error) {
-    console.error('API error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(200).json(data);
+  } catch (err) {
+    return res.status(500).json({ error: 'Fetch failed: ' + err.message });
   }
 }
